@@ -16,7 +16,7 @@ export default class HomePage extends Component {
           </Button>
         </Link>
         <Link to="/login">
-          <Button color="danger">
+          <Button color="primary">
             <span>Login</span>
           </Button>
         </Link>
