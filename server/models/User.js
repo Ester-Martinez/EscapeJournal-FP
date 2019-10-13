@@ -15,7 +15,7 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      match: [EMAIL_PATTERN, "this is not a correct email"]
+      // match: [EMAIL_PATTERN, "this is not a correct email"]
     },
     userType: {
       type: String,
