@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./../../journal-LOGO2.png";
-import { Button } from "react-bulma-components";
 import { Link } from "react-router-dom";
+import {Button} from 'react-bulma-components'
 
 export default class HomePage extends Component {
   render() {
