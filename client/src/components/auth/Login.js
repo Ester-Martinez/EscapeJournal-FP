@@ -101,7 +101,7 @@ class Login extends Component {
           <div class="field is-grouped">
             <div class="control">
               <Link to="/public">
-                <Button color="is-danger">
+                <Button color="danger" inverted={true}>
                   <span>Back to home</span>
                 </Button>
               </Link>
