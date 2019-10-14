@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import 'react-bulma-components/lib/_variables.sass';
+
 import Card from "react-bulma-components/lib/components/card";
 import Media from "react-bulma-components/lib/components/media";
 import Image from "react-bulma-components/lib/components/image";
