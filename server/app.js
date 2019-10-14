@@ -99,8 +99,7 @@ app.use('/api/auth', authRouter);
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
 
-app.get('*', function (req, res) {
-  const index = path.join(__dirname, 'build', 'index.html');
-  res.sendFile(index);
-});
+app.use((req, res, next) => {
+  res.sendFile(__dirname + '/public/index.html');
+ });
 module.exports = app;
