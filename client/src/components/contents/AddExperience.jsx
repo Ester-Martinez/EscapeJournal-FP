@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bulma-components";
 import EscapeService from "./EscapeService";
+import EscapeSelector from "./EscapeSelector";
+import RoomSelector from "./RoomSelector";
 
-//signup y login son iguales a excepción de el html renderizado y el endpoint de nuestra API rest a la que llamamos
-//uno llama a /signup y el otro a /login usando nuestro AuthService
 class AddExperience extends Component {
   constructor(props) {
     super(props);
@@ -34,11 +34,11 @@ class AddExperience extends Component {
       .then(response => {
         this.setState({
           escapeDone: "",
-      roomsDone: "",
-      team: [],
-      date: "",
-      imgName: "",
-      imgPath: ""
+          roomsDone: "",
+          team: [],
+          date: "",
+          imgName: "",
+          imgPath: ""
         });
       })
       .catch(error => {
@@ -53,46 +53,48 @@ class AddExperience extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-
+  updateEscapeDone = (selectedEscapeDone) => {
+    this.setState({
+      ...this.state,
+      escapeDone: selectedEscapeDone
+    })
+  }
+  updateRoomDone = (selectedRoomDone) => {
+    this.setState({
+      ...this.state,
+      roomsDone: selectedRoomDone.value,
+      escapeDone: this.state.escapeDone.value
+    })
+  }
   render() {
     return (
       <div>
-        <h3>
-          Please, add your new experience:
-        </h3>
+        <h3>Please, add your new experience:</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">
             <label className="label">Escape Name</label>
             <div className="control has-icons-left has-icons-right">
-              <input
-                className="input"
-                name="escapeDone"
-                value={this.state.escapeDone}
-                onChange={e => this.handleChange(e)}
-                type="text"
-                placeholder="Escape room name"
-              />
-              <span className="icon is-small is-left">
-                <i className="far fa-address-card"></i>
-              </span>
+            <EscapeSelector
+            className="select"
+              escapes={this.props.escapes}
+              isSearchable={true}
+              updateEscapeDone={this.updateEscapeDone}
+              placeholder="Escape room name"
+            ></EscapeSelector>
             </div>
           </div>
 
           <div className="field">
-            <label className="label">Username</label>
+            <label className="label">Room Name</label>
             <div className="control has-icons-left has-icons-right">
-              <input
-                className="input"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={e => this.handleChange(e)}
-                placeholder="Username"
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-user"></i>
-              </span>
-              
+            <RoomSelector
+            className="select"
+            escape={this.state.escapeDone.value}
+              rooms={this.props.rooms}
+              isSearchable={true}
+              updateRoomDone={this.updateRoomDone}
+              placeholder="Room name"
+            ></RoomSelector>
             </div>
           </div>
 
