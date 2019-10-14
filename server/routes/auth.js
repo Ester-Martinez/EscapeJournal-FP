@@ -8,8 +8,6 @@ const crypto = require("crypto");
 const login = (req, user) => {
   return new Promise((resolve, reject) => {
     req.login(user, err => {
-      console.log("req.login ");
-      console.log(user);
       if (err) {
         reject(new Error("Something went wrong"));
       } else {
