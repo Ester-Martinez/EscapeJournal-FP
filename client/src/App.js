@@ -14,7 +14,6 @@ class App extends Component {
     super(props);
     this.state = { loggedInUser: null };
     this.service = new AuthService();
-
     this.fetchUser()
   }
 
@@ -47,20 +46,18 @@ class App extends Component {
 
   render() {
     if (this.state.loggedInUser) {
-      //en este caso mostramos los contenidos ya que hay usuario
       return (
         <React.Fragment >
           <Redirect to="/home" />
           <div className="App">
             <header className="App-header">
-              <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-              <Contents />
+            <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+              <Contents userInSession={this.state.loggedInUser}/>
             </header>
           </div>
         </React.Fragment>
       );
     } else {
-      //si no estás logeado, mostrar opcionalmente o login o signup
       return (
         <React.Fragment>
           <Redirect to="/public" />

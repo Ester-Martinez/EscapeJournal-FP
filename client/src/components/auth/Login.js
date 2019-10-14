@@ -46,68 +46,51 @@ class Login extends Component {
       <div>
         <h3>Please, login to access your journal</h3>
         <form onSubmit={this.handleFormSubmit}>
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Username</label>
+            <div className="control has-icons-left">
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={e => this.handleChange(e)}
                 placeholder="Username"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
-              <span class="icon is-small is-right ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
               </span>
             </div>
-            <p class="help is-success">This username is available</p>
-            <p class="help is-danger">This username is invalid</p>
           </div>
 
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Password</label>
+            <div className="control has-icons-left">
               <input
-                class="input"
+                className="input"
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={e => this.handleChange(e)}
-                placeholder="Please, choose a password"
+                placeholder="Your password"
+                autoComplete="off"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-              <span class="icon is-small is-right is-ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right is-not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
               </span>
             </div>
-            <p class="help is-danger">
-              The password must contain at least 8 characters and at least one
-              of them has to be a number
-            </p>
           </div>
 
-          <div class="field is-grouped">
-            <div class="control">
+          <div className="field is-grouped">
+            <div className="control">
               <Link to="/public">
                 <Button color="danger" inverted={true}>
                   <span>Back to home</span>
                 </Button>
               </Link>
             </div>
-            <div class="control">
-              <input type="submit" value="Login" class="button is-link" />
+            <div className="control">
+              <input type="submit" value="Login" className="button is-link" />
             </div>
           </div>
         </form>

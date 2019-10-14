@@ -9,11 +9,13 @@ class AuthService {
   }
 
   signup = (username, password, email, name) => {
-    debugger
     return this.service.post('/signup', {username, password, email, name})
     .then(response => response.data)
   }
-
+  checkUser = (username) => {
+    return this.service.get('/checkUser', {username})
+    .then(response => response.data)
+  }
   login = (username, password) => {
     return this.service.post('/login', {username, password})
     .then(response => response.data)

@@ -1,13 +1,84 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import HomeLogged from "./HomeLogged";
+import AddExperience from "./AddExperience";
+import AllExperiences from "./AllExperiences";
+import Profile from "./Profile";
+import EscapeService from "./EscapeService";
 
-//clase componente que renderiza los contenidos genéricos
-//usando rendering condicional y el componente Switch que ya conocéis podéis mostrar los contenidos oportunos que queráis
 class Contents extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedInUser: this.props.userInSession,
+      escapes: [],
+      rooms: []
+    };
+    this.userService = new EscapeService();
+  }
+  getEscapes() {
+    this.userService.allEscapes().then(response => {
+      this.setState({
+        ...this.state,
+        escapes: response
+      });
+    });
+  }
+  getRooms() {
+    this.userService.allRooms().then(response => {
+      this.setState({
+        ...this.state,
+        rooms: response
+      });
+    });
+  }
+  componentDidMount() {
+    this.getEscapes();
+    this.getRooms();
+  }
   render() {
-    return (<div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </div>);
-    
+    return (
+      <Switch>
+        <Route
+          exact
+          path="/home"
+          render={() => (
+            <HomeLogged
+              escapes={this.state.escapes}
+              rooms={this.state.rooms}
+              user={this.state.loggedInUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/add-experience"
+          render={() => (
+            <AddExperience
+              escapes={this.state.escapes}
+              rooms={this.state.rooms}
+              user={this.state.loggedInUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/all-experiences"
+          render={() => (
+            <AllExperiences
+              escapes={this.state.escapes}
+              rooms={this.state.rooms}
+              user={this.state.loggedInUser}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={() => <Profile user={this.state.loggedInUser} />}
+        />
+      </Switch>
+    );
   }
 }
 

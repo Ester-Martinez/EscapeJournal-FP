@@ -5,8 +5,8 @@ const Rooms = require('./../models/Rooms')
 const User = require('./../models/User')
 
 const experienceSchema = new Schema({
-  escapeDone: [{ type : Schema.Types.ObjectId, ref: 'EscapeRooms' }],
-  roomsDone: [{ type : Schema.Types.ObjectId, ref: 'Rooms' }],
+  escapeDone: { type : Schema.Types.ObjectId, ref: 'EscapeRooms' },
+  roomsDone: { type : Schema.Types.ObjectId, ref: 'Rooms' },
   team: [{ type : Schema.Types.ObjectId, ref: 'User' }],
   date: Date,
   imgName: String,

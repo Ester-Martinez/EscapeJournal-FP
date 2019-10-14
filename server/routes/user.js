@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const EscapeRooms = require("../models/EscapeRooms");
+const Rooms = require("../models/Rooms");
 const upload = require("./../configs/cloudinary.config");
 const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
@@ -43,4 +45,19 @@ router.post(
   }
 );
 
+router.get("/allescapes", (req, res, next) => {
+  EscapeRooms.find()
+    .then(escapesFound => {
+
+      res.json(escapesFound)
+    });
+});
+
+router.get("/allrooms", (req, res, next) => {
+  Rooms.find()
+    .then(roomsFound => {
+
+      res.json(roomsFound)
+    });
+});
 module.exports = router;
