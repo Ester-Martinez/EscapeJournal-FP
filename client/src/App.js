@@ -48,7 +48,7 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment >
-          {/* <Redirect to="/home" /> */}
+          <Redirect to="/home" />
           <div className="App">
             <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
