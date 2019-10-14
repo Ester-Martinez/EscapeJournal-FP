@@ -4,7 +4,7 @@ const EscapeRoom = require("../models/EscapeRooms");
 const escapeRooms = require('../escapeRoomsMad')
 
 mongoose
-  .connect('mongodb+srv://Journal:3PqGVSmpR7l6tB0H@cluster0-xivn5.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true})
+  .connect(process.env.MONGO, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

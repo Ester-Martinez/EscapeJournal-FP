@@ -26,6 +26,7 @@ class Contents extends Component {
   }
   getRooms() {
     this.userService.allRooms().then(response => {
+
       this.setState({
         ...this.state,
         rooms: response
