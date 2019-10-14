@@ -34,14 +34,17 @@ router.get("/currentuser", (req, res, next) => {
     next(new Error("Not logged in"));
   }
 });
+router.get("/checkUser", (req, res, next) => {
+
+  console.log(username)
+  User.findOne({ username })
+  .then(foundUser => {
+    if (foundUser) return true;
+})
+})
 
 router.post("/signup", (req, res, next) => {
   const { username, password, email, name } = req.body;
-  console.log("req.body", req.body);
-  console.log("email", email);
-  console.log("username", username);
-  console.log("password", password);
-  console.log("name", name);
   if (!username || !password) {
     next(new Error("You must provide both username and password"));
   }

@@ -50,123 +50,129 @@ class Signup extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+  // checkUser(username) {
+  //   console.log(username)
+  //   this.service.checkUser(username)
+  //   .then(response => console.log(response.data))
 
+  // }
   render() {
     return (
       <div>
         <h3>Welcome to <span>My Escape Journal</span>. Here you can create your account</h3>
         <form onSubmit={this.handleFormSubmit}>
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control has-icons-left has-icons-right">
               <input
-                class="input"
+                className="input"
                 name="name"
                 value={this.state.name}
                 onChange={e => this.handleChange(e)}
                 type="text"
                 placeholder="Your name"
               />
-              <span class="icon is-small is-left">
-                <i class="far fa-address-card"></i>
+              <span className="icon is-small is-left">
+                <i className="far fa-address-card"></i>
               </span>
-              <span class="icon is-small is-right ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
-              <p class="help is-danger">Please, enter your name</p>
+              {this.state.name &&<span className="icon is-small is-right ok">
+                <i className="fas fa-check"></i>
+              </span>}
+              {!this.state.name &&<span className="icon is-small is-right not-ok">
+                <i className="fas fa-exclamation-triangle"></i>
+              </span>}
+              {!this.state.name && <p className="help is-danger">Please, enter your name</p>}
             </div>
           </div>
 
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Username</label>
+            <div className="control has-icons-left has-icons-right">
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={e => this.handleChange(e)}
                 placeholder="Username"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-user"></i>
               </span>
-              <span class="icon is-small is-right ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+              {this.state.username && <span className="icon is-small is-right ok">
+                <i className="fas fa-check"></i>
+              </span>}
+              {!this.state.username && <span className="icon is-small is-right not-ok">
+                <i className="fas fa-exclamation-triangle"></i>
+              </span>}
             </div>
-            <p class="help is-success">This username is available</p>
-            <p class="help is-danger">This username is invalid</p>
+            {/* {this.checkUser(this.state.username) && <p className="help is-success">This username is available</p>}
+            {!this.state.username && <p className="help is-danger">This username is invalid</p>} */}
           </div>
 
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control has-icons-left has-icons-right">
               <input
-                class="input"
+                className="input"
                 type="email"
                 name="email"
                 value={this.state.email}
                 onChange={e => this.handleChange(e)}
                 placeholder="your-email-address@email.example"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
               </span>
-              <span class="icon is-small is-right is-ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right is-not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+              {this.state.email && <span className="icon is-small is-right is-ok">
+                <i className="fas fa-check"></i>
+              </span>}
+              {!this.state.email && <span className="icon is-small is-right is-not-ok">
+                <i className="fas fa-exclamation-triangle"></i>
+              </span>}
             </div>
-            <p class="help is-success">This email is correct</p>
-            <p class="help is-danger">This email is invalid</p>
+            {/* <p className="help is-success">This email is correct</p>
+            <p className="help is-danger">This email is invalid</p> */}
           </div>
 
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control has-icons-left has-icons-right">
+          <div className="field">
+            <label className="label">Password</label>
+            <div className="control has-icons-left has-icons-right">
               <input
-                class="input"
+                className="input"
                 name="password"
                 value={this.state.password}
                 onChange={e => this.handleChange(e)}
                 type="password"
                 placeholder="Please, choose a password"
+                autoComplete="off"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
               </span>
-              <span class="icon is-small is-right is-ok">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="icon is-small is-right is-not-ok">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+              {this.state.password.length>=8 && <span className="icon is-small is-right is-ok">
+                <i className="fas fa-check"></i>
+              </span>}
+              {this.state.password.length<8 && <span className="icon is-small is-right is-not-ok">
+                <i className="fas fa-exclamation-triangle"></i>
+              </span>}
             </div>
-            <p class="help is-danger">
+            {this.state.password.length<8&& this.state.password.length>0 && <p className="help is-danger">
               The password must contain at least 8 characters and at least one
               of them has to be a number
-            </p>
+            </p>}
           </div>
 
-          <div class="field is-grouped">
-            <div class="control">
+          <div className="field is-grouped">
+            <div className="control">
               <Link to="/public">
                 <Button color="danger" inverted={true}>
                   <span>Back to home</span>
                 </Button>
               </Link>
             </div>
-            <div class="control">
-              <input type="submit" value="Sign up" class="button is-link" />
+            <div className="control">
+              <input type="submit" value="Sign up" className="button is-link" />
             </div>
           </div>
         </form>

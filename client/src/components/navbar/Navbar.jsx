@@ -38,15 +38,15 @@ class Navbar extends Component {
           aria-label="main navigation"
         >
           <div className="navbar-brand">
-            <Link class="navbar-item" to="/home">
-              <img src="house-lock.png" width="28" height="28" />
+            <Link className="navbar-item" to="/home">
+              <img src="house-lock.png" width="28" height="28" alt='home-icon'/>
             </Link>
 
             {/* 
             This makes the mobile menu appear. TODO in responsive design.
             <a
               role="button"
-              class="navbar-burger burger"
+              className="navbar-burger burger"
               aria-label="menu"
               aria-expanded="false"
               data-target="navbarBasicExample"
@@ -60,16 +60,16 @@ class Navbar extends Component {
           <div id="JournalNavbar" className="navbar-menu">
             <div className="navbar-start">
               <Link to="/add-experience" className="navbar-item">Add experience</Link>
-              <Link to="/add-friend" className="navbar-item">Add friend</Link>
+              <Link to="/all-experiences" className="navbar-item">All my escapes</Link>
               <Link to="/profile" className="navbar-item">My profile</Link>
             </div>
 
             <div className="navbar-end">
             <div className="navbar-item"><h2>Hi, {this.state.loggedInUser.name}</h2></div>
 
-            <a className="navbar-item" onClick={this.handleLogout}><Button color="danger">
+            <div className="navbar-item" onClick={this.handleLogout}><Button color="danger">
                   <span>Logout</span>
-                </Button></a>
+                </Button></div>
             </div>
           </div>
         </nav>

@@ -53,6 +53,7 @@ class App extends Component {
           <Redirect to="/home" />
           <div className="App">
             <header className="App-header">
+            
               <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
               <Contents />
             </header>
