@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Users = require('../Users')
 
 mongoose
-  .connect('mongodb://localhost/escapejournal-back', {useNewUrlParser: true})
+  .connect(process.env.MONGO, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

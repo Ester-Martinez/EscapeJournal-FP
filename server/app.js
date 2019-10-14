@@ -34,7 +34,7 @@ const app = express();
 
 // Middleware Setup
 var whitelist = [
-  'http://localhost:3000'
+  `${process.env.REACT_APP_API_URL}`
 ];
 var corsOptions = {
   origin: function(origin, callback){
@@ -98,4 +98,8 @@ app.use('/api/auth', authRouter);
 
 const userRouter = require('./routes/user');
 app.use('/user', userRouter);
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + '/public/index.html');
+ });
 module.exports = app;
