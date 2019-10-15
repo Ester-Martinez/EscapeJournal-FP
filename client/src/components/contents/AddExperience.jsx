@@ -5,11 +5,14 @@ import EscapeService from "./EscapeService";
 import EscapeSelector from "./EscapeSelector";
 import RoomSelector from "./RoomSelector";
 import CalendarForm from "./CalendarForm";
+import "./AddExperience.css";
 
 class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newFriendName: "",
+      newFriendEmail: "",
       escapeDone: "",
       roomsDone: "",
       team: [],
@@ -39,6 +42,28 @@ class AddExperience extends Component {
           date: "",
           imgName: "",
           imgPath: ""
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          ...this.state,
+          error: true
+        });
+      });
+  };
+  handleFormSubmitFriend = event => {
+    event.preventDefault();
+    const newFriendName = this.state.newFriendName;
+    const newFriendEmail = this.state.newFriendEmail;
+    debugger
+    this.service
+      .addFriend(newFriendName, newFriendEmail)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          newFriendName: "",
+          newFriendEmail: ""
         });
       })
       .catch(error => {
@@ -105,6 +130,52 @@ class AddExperience extends Component {
   render() {
     return (
       <div>
+        <h3>If your friends are not on your list, add them here:</h3>
+        <form onSubmit={e => this.handleFormSubmitFriend(e)}>
+          <div className="field is-horizontal">
+            <div className="field friend-field">
+              <div className="control has-icons-left is-expanded">
+                <input
+                  className="input"
+                  type="text"
+                  name="newFriendName"
+                  value={this.state.newFriendName}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="New Friend Name"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field friend-field">
+              <div className="control has-icons-left is-expanded">
+                <input
+                  className="input"
+                  type="email"
+                  name="newFriendEmail"
+                  value={this.state.newFriendEmail}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="your-friend-email-@email.example"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="field is-centered">
+            <div className="control">
+              <input
+                type="submit"
+                value="Add Friend"
+                className="button is-link"
+              />
+            </div>
+          </div>
+        </form>
+        <br />
         <h3>Please, add your new experience:</h3>
         <form onSubmit={e => this.handleFormSubmit(e)}>
           <div className="field">

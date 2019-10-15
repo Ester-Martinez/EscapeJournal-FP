@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const EscapeRooms = require("../models/EscapeRooms");
 const Rooms = require("../models/Rooms");
+const Friend = require("../models/Friends");
 const upload = require("./../configs/cloudinary.config");
 const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
@@ -28,11 +29,32 @@ router.post(
   }
 );
 
+router.post(
+  "/add-friend",
+  (req, res, next) => {
+    const { newFriendName, newFriendEmail } = req.body;
+      const newFriend = new Friend({
+        newFriendName, newFriendEmail
+      });
+      newFriend
+        .save()
+        .then(savedFriend => res.json(savedFriend))
+        .catch(error => next(error));
+  }
+);
+
 router.get("/allescapes", (req, res, next) => {
   EscapeRooms.find()
     .then(escapesFound => {
 
       res.json(escapesFound)
+    });
+});
+
+router.get("/myfriends", (req, res, next) => {
+  Friend.find()
+    .then(friendsFound => {
+      res.json(friendsFound)
     });
 });
 

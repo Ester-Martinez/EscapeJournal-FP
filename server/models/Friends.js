@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const userSchema = new Schema({
-  name: String,
-  email: String,
+const friendSchema = new Schema({
+  newFriendName: String,
+  newFriendEmail: String,
   roomsDone: [{ type : Schema.Types.ObjectId, ref: 'EscapeRooms' }]
 }, {
   timestamps: {
@@ -12,5 +12,5 @@ const userSchema = new Schema({
   }
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+const Friend = mongoose.model('Friends', friendSchema);
+module.exports = Friend;
