@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const EscapeRooms = require("../models/EscapeRooms");
 const Rooms = require("../models/Rooms");
+const Friend = require("../models/Friends");
 const upload = require("./../configs/cloudinary.config");
 const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
@@ -31,10 +32,9 @@ router.post(
 router.post(
   "/add-friend",
   (req, res, next) => {
-    const { name, email } = req.body;
+    const { newFriendName, newFriendEmail } = req.body;
       const newFriend = new Friend({
-        name,
-        email,
+        newFriendName, newFriendEmail
       });
       newFriend
         .save()

@@ -21,11 +21,10 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
-  addFriend = (name, email) => {
+  addFriend = (newFriendName, newFriendEmail) => {
     return this.service
       .post("/add-friend", {
-        name,
-        email,
+        newFriendName, newFriendEmail
       })
       .then(response => response.data)
       .catch(err => console.log(err));
