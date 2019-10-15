@@ -42,6 +42,7 @@ class AddExperience extends Component {
         });
       })
       .catch(error => {
+        console.log(error);
         this.setState({
           ...this.state,
           error: true
