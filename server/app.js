@@ -92,13 +92,13 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
-const index = require("./routes/index");
+const index = require("./routes/index.routes");
 app.use("/", index);
 
-const authRouter = require("./routes/auth");
+const authRouter = require("./routes/auth.routes");
 app.use("/api/auth", authRouter);
 
-const userRouter = require("./routes/user");
+const userRouter = require("./routes/user.routes");
 app.use("/user", userRouter);
 
 app.use((req, res, next) => {
