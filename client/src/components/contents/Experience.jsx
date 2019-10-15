@@ -1,45 +1,61 @@
 import React, { Component } from "react";
-import 'react-bulma-components/lib/_variables.sass';
-
-import Card from "react-bulma-components/lib/components/card";
-import Media from "react-bulma-components/lib/components/media";
-import Image from "react-bulma-components/lib/components/image";
-import Content from "react-bulma-components/lib/components/content";
-import Heading from "react-bulma-components/lib/components/heading";
+import {
+  Card,
+  CardPrimaryAction,
+  CardMedia,
+  CardActions,
+  CardActionButtons,
+  CardActionButton,
+  CardActionIcons, 
+  CardActionIcon
+} from "@rmwc/card";
+import { Typography } from "@rmwc/typography";
+import {Icon, icon} from '@rmwc/icon';
+import "./Experience.css";
+import "@material/card/dist/mdc.card.css";
+import "@material/button/dist/mdc.button.css";
+import "@material/icon-button/dist/mdc.icon-button.css";
+import "@material/typography/dist/mdc.typography.css";
+import '@rmwc/icon/icon.css';
 
 export default class Experience extends Component {
   render() {
     return (
-      <div>
-        <Card>
-          <Card.Image
-            size="4by3"
-            src="http://bulma.io/images/placeholders/1280x960.png"
-          />
-          <Card.Content>
-            <Media>
-              <Media.Item renderAs="figure" position="left">
-                <Image
-                  size={64}
-                  alt="64x64"
-                  src="http://bulma.io/images/placeholders/128x128.png"
-                />
-              </Media.Item>
-              <Media.Item>
-                <Heading size={4}>John Smith</Heading>
-                <Heading subtitle size={6}>
-                  @johnsmith
-                </Heading>
-              </Media.Item>
-            </Media>
-            <Content>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              nec iaculis mauris. <a>@bulmaio</a>.<a href="#1">#css</a>{" "}
-              <a href="#2">#responsive</a>
-              <br />
-              <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </Content>
-          </Card.Content>
+      <div className="mdc-card card">
+        <Card style={{ width: "25rem", }}>
+            <CardMedia
+              sixteenByNine
+              style={{
+                backgroundImage: "url(https://res.cloudinary.com/my-escape-journal/image/upload/v1571151679/EscapeJournal/r4q0rgbe85fvjm1evqij.jpg)"
+              }}
+            />
+            <div style={{ padding: "0 1rem 1rem 1rem" }}>
+              <Typography use="headline6" tag="h2" style={{ marginTop: '2rem' }}>
+                Abracadabra
+              </Typography>
+              <Typography
+              
+                use="subtitle2"
+                tag="h3"
+                theme="textSecondaryOnBackground"
+              >
+                BrainBreak
+              </Typography>
+              <Typography
+                use="body1"
+                tag="div"
+                theme="textSecondaryOnBackground"
+                style={{ marginTop: '1rem' }}
+              >
+                21-05-2017 - Ester, Luis, Tanis, Antonio
+              </Typography>
+            </div>
+          <CardActions>
+            <CardActionButtons>
+              <CardActionButton>Add</CardActionButton>
+              <CardActionButton>See picture</CardActionButton>
+            </CardActionButtons>
+          </CardActions>
         </Card>
       </div>
     );
