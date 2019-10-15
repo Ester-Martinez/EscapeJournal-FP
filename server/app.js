@@ -34,12 +34,14 @@ const app = express();
 
 // Middleware Setup
 var whitelist = [
-  'http://localhost:3000'
+  "http://localhost:3000",
+  "http://localhost:3010",
+  "https://myescapejournal.herokuapp.com/"
 ];
 var corsOptions = {
-  origin: function(origin, callback){
-      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-      callback(null, originIsWhitelisted);
+  origin: function(origin, callback) {
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
   },
   credentials: true
 };
@@ -63,7 +65,7 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 hbs.registerHelper("ifUndefined", (value, options) => {
   if (arguments.length < 2)
@@ -93,9 +95,13 @@ require("./passport")(app);
 const index = require("./routes/index");
 app.use("/", index);
 
-const authRouter = require('./routes/auth');
-app.use('/api/auth', authRouter);
+const authRouter = require("./routes/auth");
+app.use("/api/auth", authRouter);
 
-const userRouter = require('./routes/user');
-app.use('/user', userRouter);
+const userRouter = require("./routes/user");
+app.use("/user", userRouter);
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 module.exports = app;
