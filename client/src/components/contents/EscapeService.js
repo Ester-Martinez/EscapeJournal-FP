@@ -21,6 +21,15 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
+  addFriend = (name, email) => {
+    return this.service
+      .post("/add-friend", {
+        name,
+        email,
+      })
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  };
   allEscapes = () => {
     return this.service
       .get("/allescapes")
@@ -30,6 +39,12 @@ class EscapeService {
   allRooms = () => {
     return this.service
       .get("/allrooms")
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  };
+  myFriends = () => {
+    return this.service
+      .get("/myfriends")
       .then(response => response.data)
       .catch(err => console.log(err));
   };

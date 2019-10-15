@@ -28,11 +28,33 @@ router.post(
   }
 );
 
+router.post(
+  "/add-friend",
+  (req, res, next) => {
+    const { name, email } = req.body;
+      const newFriend = new Friend({
+        name,
+        email,
+      });
+      newFriend
+        .save()
+        .then(savedFriend => res.json(savedFriend))
+        .catch(error => next(error));
+  }
+);
+
 router.get("/allescapes", (req, res, next) => {
   EscapeRooms.find()
     .then(escapesFound => {
 
       res.json(escapesFound)
+    });
+});
+
+router.get("/myfriends", (req, res, next) => {
+  Friend.find()
+    .then(friendsFound => {
+      res.json(friendsFound)
     });
 });
 
