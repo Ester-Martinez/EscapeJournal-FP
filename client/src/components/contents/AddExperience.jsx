@@ -32,6 +32,8 @@ class AddExperience extends Component {
     this.service
       .addExperience(escapeDone, roomsDone, team, date, imgName, imgPath)
       .then(response => {
+        EscapeSelector.clearValue();
+        RoomSelector.clearValue();
         this.setState({
           escapeDone: "",
           roomsDone: "",
