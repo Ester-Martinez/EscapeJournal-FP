@@ -7,74 +7,73 @@ const Friend = require("../models/Friends");
 const upload = require("./../configs/cloudinary.config");
 const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
-const uploader = require('./../configs/cloudinary.config');
+const uploader = require("./../configs/cloudinary.config");
 
-router.post(
-  "/add-experience",
-  (req, res, next) => {
-    const { escapeDone, roomsDone, team, date, imgName, imgPath } = req.body;
-      // console.log('entra')
-      const newExperience = new Experience({
-        escapeDone,
-        roomsDone,
-        imgName,
-        imgPath,
-        team,
-        date,
-      });
-      newExperience
-        .save()
-        .then(savedExp => res.json(savedExp))
-        .catch(error => next(error));
-  }
-);
+router.post("/add-experience", (req, res, next) => {
+  const { escapeDone, roomsDone, team, date, imgName, imgPath } = req.body;
+  // console.log('entra')
+  const newExperience = new Experience({
+    escapeDone,
+    roomsDone,
+    imgName,
+    imgPath,
+    team,
+    date
+  });
+  newExperience
+    .save()
+    .then(savedExp => res.json(savedExp))
+    .catch(error => next(error));
+});
 
-router.post(
-  "/add-friend",
-  (req, res, next) => {
-    const { newFriendName, newFriendEmail } = req.body;
-      const newFriend = new Friend({
-        newFriendName, newFriendEmail
-      });
-      newFriend
-        .save()
-        .then(savedFriend => res.json(savedFriend))
-        .catch(error => next(error));
-  }
-);
+router.post("/add-friend", (req, res, next) => {
+  const { newFriendName, newFriendEmail } = req.body;
+  const newFriend = new Friend({
+    newFriendName,
+    newFriendEmail
+  });
+  newFriend
+    .save()
+    // .then(savedFriend => res.json(savedFriend))
+    .then(savedFriend =>
+      User.findByIdAndUpdate(
+        { _id: req.user.id },
+        { $push: { friends: savedFriend._id } },
+        { new: true }
+      )
+        .then(updatedFriend => res.json(updatedFriend))
+        .catch(error => next(error))
+    )
+    .catch(error => next(error));
+});
 
 router.get("/allescapes", (req, res, next) => {
-  EscapeRooms.find()
-    .then(escapesFound => {
-
-      res.json(escapesFound)
-    });
+  EscapeRooms.find().then(escapesFound => {
+    res.json(escapesFound);
+  });
 });
 
 router.get("/myfriends", (req, res, next) => {
-  Friend.find()
-    .then(friendsFound => {
-      res.json(friendsFound)
-    });
+  let currentUser = req.user._id
+  User.findById(currentUser)
+  .populate("friends")
+  .then(userFriends => {res.json(userFriends.friends)})
 });
 
 router.get("/allrooms", (req, res, next) => {
-  Rooms.find()
-    .then(roomsFound => {
-
-      res.json(roomsFound)
-    });
+  Rooms.find().then(roomsFound => {
+    res.json(roomsFound);
+  });
 });
 
-router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
-
+router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
   if (!req.file) {
-    next(new Error('No file uploaded!'));
+    next(new Error("No file uploaded!"));
     return;
   }
-  // get secure_url from the file object and save it in the 
+  // get secure_url from the file object and save it in the
   // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
   res.json({ secure_url: req.file.secure_url });
-})
+});
 
 module.exports = router;

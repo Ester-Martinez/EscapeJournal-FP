@@ -4,6 +4,7 @@ import { Button } from "react-bulma-components";
 import EscapeService from "./EscapeService";
 import EscapeSelector from "./EscapeSelector";
 import RoomSelector from "./RoomSelector";
+import FriendSelector from './FriendSelector'
 import CalendarForm from "./CalendarForm";
 import "./AddExperience.css";
 
@@ -82,6 +83,12 @@ class AddExperience extends Component {
     this.setState({
       ...this.state,
       escapeDone: selectedEscapeDone
+    });
+  };
+  updateTeam = selectedTeam => {
+    this.setState({
+      ...this.state,
+      team: selectedTeam
     });
   };
   updateRoomDone = selectedRoomDone => {
@@ -202,6 +209,19 @@ class AddExperience extends Component {
                 updateRoomDone={this.updateRoomDone}
                 placeholder="Room name"
               ></RoomSelector>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Friends</label>
+            <div className="control">
+              <FriendSelector
+                className="select"
+                friends={this.props.friends}
+                isSearchable={true}
+                updateTeam={this.updateTeam}
+                placeholder="Friend name"
+              ></FriendSelector>
             </div>
           </div>
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 
-const options= (escapes)=> {
-  let options = escapes.map(escape => {
+const options= (friends)=> {
+  let options = friends.map(friend => {
     return {
-    label: escape.name,
-    value: escape._id}
+    label: `${friend.newFriendName} <${friend.newFriendEmail}>`,
+    value: friend._id}
   })
   return options
 }
@@ -17,7 +17,7 @@ class FriendSelector extends React.Component {
   handleChange = selectedOption => {
     this.setState(
       { selectedOption },
-      () => this.props.updateEscapeDone(this.state.selectedOption)
+      () => this.props.updateTeam(this.state.selectedOption)
     );
   };
   render() {
@@ -27,7 +27,7 @@ class FriendSelector extends React.Component {
       <Select
         value={selectedOption}
         onChange={this.handleChange}
-        options={options(this.props.escapes)}
+        options={options(this.props.friends)}
       />
     );
   }

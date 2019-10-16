@@ -57,6 +57,7 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
+              friends={this.state.friends}
             />
           )}
         />
@@ -68,6 +69,7 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
+              friends={this.state.friends}
             />
           )}
         />
@@ -79,6 +81,7 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
+              friends={this.state.friends}
             />
           )}
         />
