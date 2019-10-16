@@ -18,31 +18,42 @@ class Navbar extends Component {
   handleLogout = e => {
     this.props.logout();
   };
-//  correctName() {
-//   let letters = this.state.loggedInUser.name.split('');
-//   let firstLetter = letters.shift()
-//   letters.unshift(firstLetter.toUpperCase());
-//   let newName = letters.join()
-//   this.setState(
-//     {...this.state,
-//     name: newName}
-//   )
-//  }
-  
+  //  correctName() {
+  //   let letters = this.state.loggedInUser.name.split('');
+  //   let firstLetter = letters.shift()
+  //   letters.unshift(firstLetter.toUpperCase());
+  //   let newName = letters.join()
+  //   this.setState(
+  //     {...this.state,
+  //     name: newName}
+  //   )
+  //  }
+
   render() {
     if (this.state.loggedInUser) {
       return (
-        <nav
-          className="navbar is-fixed-top"
-          role="navigation"
-          aria-label="main navigation"
-        >
-          <div className="navbar-brand">
-            <Link className="navbar-item" to="/home">
-              <img src="house-lock.png" width="28" height="28" alt='home-icon'/>
-            </Link>
+        <React.Fragment>
+  
 
-            {/* 
+
+
+        {/*++]*********************************************** Aquí acaba la nueva */}
+          <nav
+            className="navbar is-fixed-top"
+            role="navigation"
+            aria-label="main navigation"
+          >
+            <div className="navbar-brand">
+              <Link className="navbar-item" to="/home">
+                <img
+                  src="house-lock.png"
+                  width="28"
+                  height="28"
+                  alt="home-icon"
+                />
+              </Link>
+
+              {/* 
             This makes the mobile menu appear. TODO in responsive design.
             <a
               role="button"
@@ -55,37 +66,48 @@ class Navbar extends Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a> */}
-          </div>
-
-          <div id="JournalNavbar" className="navbar-menu">
-            <div className="navbar-start">
-              <Link to="/add-experience" className="navbar-item">Add experience</Link>
-              <Link to="/all-experiences" className="navbar-item">All my escapes</Link>
-              <Link to="/profile" className="navbar-item">My profile</Link>
             </div>
 
-            <div className="navbar-end">
-            <div className="navbar-item"><h2>Hi, {this.state.loggedInUser.name}</h2></div>
+            <div id="JournalNavbar" className="navbar-menu">
+              <div className="navbar-start">
+                <Link to="/add-experience" className="navbar-item">
+                  Add experience
+                </Link>
+                <Link to="/all-experiences" className="navbar-item">
+                  All my escapes
+                </Link>
+                <Link to="/profile" className="navbar-item">
+                  My profile
+                </Link>
+              </div>
 
-            <div className="navbar-item" onClick={this.handleLogout}><Button color="danger">
-                  <span>Logout</span>
-                </Button></div>
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <h2>Hi, {this.state.loggedInUser.name}</h2>
+                </div>
+
+                <div className="navbar-item" onClick={this.handleLogout}>
+                  <Button color="danger">
+                    <span>Logout</span>
+                  </Button>
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
 
-        //     <li>
-        //       <a onClick={this.handleLogout}>Logout</a>
-        //     </li>
-        //     <li>
-        //       <Link to="/signup">Search</Link>
-        //     </li>
-        //   </ul>
+          {/*      <li>
+              <a onClick={this.handleLogout}>Logout</a>
+             </li>
+             <li>
+               <Link to="/signup">Search</Link>
+             </li>
+           </ul> */}
 
-        //   <div className="header">
-        //     <h2>Welcome {this.state.loggedInUser.username} - Ironhacker</h2>
-        //   </div>
-        // </nav>
+          {/* <div className="header">
+             <h2>Welcome {this.state.loggedInUser.username} - Ironhacker</h2>
+           </div>
+         </nav> */}
+        </React.Fragment>
       );
     } else {
       return (
