@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
-const EscapeRooms = require('./../models/EscapeRooms')
+const Escape = require('./../models/EscapeRooms')
 const Rooms = require('./../models/Rooms')
 const User = require('./../models/User')
 

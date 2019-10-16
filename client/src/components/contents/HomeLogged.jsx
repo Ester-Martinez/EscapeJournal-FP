@@ -1,47 +1,29 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {Button} from 'react-bulma-components'
+import { Button } from "react-bulma-components";
 import Experience from "./Experience";
 import "./HomeLogged.css";
-
 
 export default class HomeLogged extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-    };
-  }
-  checkInfo() {
-    console.log(this.props.experiences.experiences)
+    this.state = {};
   }
   render() {
-    this.checkInfo()
+    // console.log(this.userExperience)
     return (
       <div className="cards">
-              {/* {this.props.experiences.map(experience => {
-                
+        {this.props.experiences.map(userExperience => {
           return (
-           
-              <Experience
-              imgPath={experience.imgPath}
-              roomDone={experience}
-              escapeDone={experience.escapeDone}
-              date={experience.date}
-              owner={experience.owner}
-              ></Experience>
+            <Experience
+              user={this.props.user.name}
+              imgPath={userExperience.imgPath}
+              roomDone={userExperience.roomDone.name}
+              escapeDone={userExperience.escapeDone.name}
+              date={userExperience.date.substring(0,10)}
+            ></Experience>
           );
-        })} */}
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
-      <Experience></Experience>
+        })}
       </div>
     );
   }
