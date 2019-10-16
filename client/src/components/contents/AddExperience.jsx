@@ -104,6 +104,7 @@ class AddExperience extends Component {
     });
   };
   updateDate = selectedDate => {
+    
     this.setState({
       ...this.state,
       date: selectedDate

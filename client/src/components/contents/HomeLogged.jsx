@@ -20,7 +20,7 @@ export default class HomeLogged extends Component {
               imgPath={userExperience.imgPath}
               roomDone={userExperience.roomDone.name}
               escapeDone={userExperience.escapeDone.name}
-              date={userExperience.date.substring(0,10)}
+              date={userExperience.date}
             ></Experience>
           );
         })}

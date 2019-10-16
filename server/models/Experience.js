@@ -9,7 +9,7 @@ const experienceSchema = new Schema({
   roomDone: { type : Schema.Types.ObjectId, ref: 'Rooms' },
   owner: { type : Schema.Types.ObjectId, ref: 'User' },
   team: [{ type : Schema.Types.ObjectId, ref: 'Friends' }],
-  date: Date,
+  date: String,
   imgName: String,
   imgPath: String,
 }, {
