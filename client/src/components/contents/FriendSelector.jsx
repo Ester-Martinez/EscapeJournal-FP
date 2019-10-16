@@ -4,7 +4,7 @@ import Select from 'react-select';
 const options= (friends)=> {
   let options = friends.map(friend => {
     return {
-    label: `${friend.newFriendName} <${friend.newFriendEmail}>`,
+    label: `${friend.friendName} <${friend.friendEmail}>`,
     value: friend._id}
   })
   return options

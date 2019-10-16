@@ -10,26 +10,35 @@ const Experience = require("./../models/Experience");
 const uploader = require("./../configs/cloudinary.config");
 
 router.post("/add-experience", (req, res, next) => {
-  const { escapeDone, roomsDone, team, date, imgName, imgPath } = req.body;
+  const { escapeDone, roomDone, team, date, imgName, imgPath } = req.body;
+  const owner = req.user._id;
   const newExperience = new Experience({
     escapeDone,
-    roomsDone,
+    roomDone,
     imgName,
     imgPath,
     team,
-    date
+    date,
+    owner
   });
   newExperience
     .save()
-    .then(savedExp => res.json(savedExp))
+    .then(savedExp =>
+      User.findByIdAndUpdate(
+        { _id: req.user.id },
+        { $push: { experiences: savedExp._id } },
+        { new: true }
+      )
+    )
+    .then(savedInUser => res.json(savedExp))
     .catch(error => next(error));
 });
 
 router.post("/add-friend", (req, res, next) => {
-  const { newFriendName, newFriendEmail } = req.body;
+  const { friendName, friendEmail } = req.body;
   const newFriend = new Friend({
-    newFriendName,
-    newFriendEmail
+    friendName,
+    friendEmail
   });
   newFriend
     .save()
@@ -53,10 +62,12 @@ router.get("/allescapes", (req, res, next) => {
 });
 
 router.get("/myfriends", (req, res, next) => {
-  let currentUser = req.user._id
+  let currentUser = req.user._id;
   User.findById(currentUser)
-  .populate("friends")
-  .then(userFriends => {res.json(userFriends.friends)})
+    .populate("friends")
+    .then(userFriends => {
+      res.json(userFriends.friends);
+    });
 });
 
 router.get("/allrooms", (req, res, next) => {

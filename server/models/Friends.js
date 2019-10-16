@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const friendSchema = new Schema({
-  newFriendName: String,
-  newFriendEmail: String,
+  friendName: String,
+  friendEmail: String,
 }, {
   timestamps: {
     createdAt: 'created_at',

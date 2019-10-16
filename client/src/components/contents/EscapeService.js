@@ -8,11 +8,11 @@ class EscapeService {
     });
   }
 
-  addExperience = (escapeDone, roomsDone, team, date, imgName, imgPath) => {
+  addExperience = (escapeDone, roomDone, team, date, imgName, imgPath) => {
     return this.service
       .post("/add-experience", {
         escapeDone,
-        roomsDone,
+        roomDone,
         team,
         date,
         imgName,
@@ -21,10 +21,10 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
-  addFriend = (newFriendName, newFriendEmail) => {
+  addFriend = (friendName, friendEmail) => {
     return this.service
       .post("/add-friend", {
-        newFriendName, newFriendEmail
+        friendName, friendEmail
       })
       .then(response => response.data)
       .catch(err => console.log(err));

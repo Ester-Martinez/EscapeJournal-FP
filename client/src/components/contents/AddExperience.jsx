@@ -12,10 +12,10 @@ class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newFriendName: "",
-      newFriendEmail: "",
+      friendName: "",
+      friendEmail: "",
       escapeDone: "",
-      roomsDone: "",
+      roomDone: "",
       team: [],
       date: "",
       imgName: "",
@@ -29,22 +29,23 @@ class AddExperience extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const escapeDone = this.state.escapeDone;
-    const roomsDone = this.state.roomsDone;
+    const roomDone = this.state.roomDone;
     const team = this.state.team;
     const date = this.state.date;
     const imgName = this.state.imgName;
     const imgPath = this.state.imgPath;
 
     this.service
-      .addExperience(escapeDone, roomsDone, team, date, imgName, imgPath)
+      .addExperience(escapeDone, roomDone, team, date, imgName, imgPath)
       .then(response => {
         this.setState({
           escapeDone: "",
-          roomsDone: "",
+          roomDone: "",
           team: [],
           date: "",
           imgName: "",
-          imgPath: ""
+          imgPath: "",
+          success: true
         });
       })
       .catch(error => {
@@ -57,15 +58,15 @@ class AddExperience extends Component {
   };
   handleFormSubmitFriend = event => {
     event.preventDefault();
-    const newFriendName = this.state.newFriendName;
-    const newFriendEmail = this.state.newFriendEmail;
+    const friendName = this.state.friendName;
+    const friendEmail = this.state.friendEmail;
     this.service
-      .addFriend(newFriendName, newFriendEmail)
+      .addFriend(friendName, friendEmail)
       .then(response => {
         this.setState({
           ...this.state,
-          newFriendName: "",
-          newFriendEmail: ""
+          friendName: "",
+          friendEmail: ""
         });
         this.props.getFriends();
       })
@@ -98,7 +99,7 @@ class AddExperience extends Component {
   updateRoomDone = selectedRoomDone => {
     this.setState({
       ...this.state,
-      roomsDone: selectedRoomDone.value,
+      roomDone: selectedRoomDone.value,
       escapeDone: this.state.escapeDone.value
     });
   };
@@ -116,7 +117,7 @@ class AddExperience extends Component {
       .then(response => {
         this.setState({
           imgPath: response.secure_url,
-          imgName: this.state.roomsDone
+          imgName: this.state.roomDone
         });
       })
       .catch(err => {
@@ -126,8 +127,8 @@ class AddExperience extends Component {
   checkToSend() {
     if (
       !this.state.escapeDone ||
-      !this.state.roomsDone ||
-      // !this.state.team ||
+      !this.state.roomDone ||
+      !this.state.team ||
       !this.state.date ||
       !this.state.imgName ||
       !this.state.imgPath
@@ -150,8 +151,8 @@ class AddExperience extends Component {
                   <input
                     className="input"
                     type="text"
-                    name="newFriendName"
-                    value={this.state.newFriendName}
+                    name="friendName"
+                    value={this.state.friendName}
                     onChange={e => this.handleChange(e)}
                     placeholder="New Friend Name"
                   />
@@ -166,8 +167,8 @@ class AddExperience extends Component {
                   <input
                     className="input"
                     type="email"
-                    name="newFriendEmail"
-                    value={this.state.newFriendEmail}
+                    name="friendEmail"
+                    value={this.state.friendEmail}
                     onChange={e => this.handleChange(e)}
                     placeholder="your-friend-email-@email.example"
                   />
@@ -284,11 +285,19 @@ class AddExperience extends Component {
             </div>
           </form>
         </div>
-        <h1>
+        {/* <h1>
           {this.state.error
             ? "There seems to be an error. Please, try again"
             : ""}
+        </h1> */}
+         <h1>
+          {this.state.success
+            ? "Your experience has been uploaded correctly"
+            : ""}
         </h1>
+        {this.state.success
+            ? <Link to='/home'>Back home</Link>
+            : ""}
       </div>
     );
   }
