@@ -24,10 +24,9 @@ const userSchema = new Schema(
     },
     name: String,
     experience: [{ type: Schema.Types.ObjectId, ref: "Experience" }],
-    roomsDone: [{ type: Schema.Types.ObjectId, ref: "EscapeRooms" }],
+    friends: [{ type: Schema.Types.ObjectId, ref: "Friends" }],
     validationCode: { type: String, unique: true },
     active: { type: Boolean, default: false },
-    guest: { type: Boolean, default: true }
   },
   {
     timestamps: {

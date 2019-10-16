@@ -12,7 +12,8 @@ class Contents extends Component {
     this.state = {
       loggedInUser: this.props.userInSession,
       escapes: [],
-      rooms: []
+      rooms: [],
+      friends: []
     };
     this.userService = new EscapeService();
   }
@@ -26,16 +27,24 @@ class Contents extends Component {
   }
   getRooms() {
     this.userService.allRooms().then(response => {
-
       this.setState({
         ...this.state,
         rooms: response
       });
     });
   }
+  getFriends() {
+    this.userService.myFriends().then(response => {
+      this.setState({
+        ...this.state,
+        friends: response
+      });
+    });
+  }
   componentDidMount() {
     this.getEscapes();
     this.getRooms();
+    this.getFriends();
   }
   render() {
     return (
