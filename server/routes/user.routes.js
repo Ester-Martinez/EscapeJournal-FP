@@ -4,8 +4,8 @@ const User = require("../models/User");
 const EscapeRooms = require("../models/EscapeRooms");
 const Rooms = require("../models/Rooms");
 const Friend = require("../models/Friends");
-const upload = require("./../configs/cloudinary.config");
-const access = require("./../middlewares/access.mid");
+// const upload = require("./../configs/cloudinary.config");
+// const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
 const uploader = require("./../configs/cloudinary.config");
 
