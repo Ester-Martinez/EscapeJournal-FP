@@ -69,6 +69,17 @@ router.get("/myfriends", (req, res, next) => {
       res.json(userFriends.friends);
     });
 });
+router.get("/myexperiences", (req, res, next) => {
+  let currentUser = req.user._id;
+  User.findById(currentUser)
+  .populate({ path: "experiences", populate: { path: "roomDone" } })
+  .populate({ path: "experiences", populate: { path: "team" } })
+  .populate({ path: "experiences", populate: { path: "escapeDone" } })
+    .then(userExperiences => {
+      // console.log(userExperiences)
+      res.json(userExperiences.experiences);
+    });
+});
 
 router.get("/allrooms", (req, res, next) => {
   Rooms.find().then(roomsFound => {

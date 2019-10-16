@@ -13,7 +13,8 @@ class Contents extends Component {
       loggedInUser: this.props.userInSession,
       escapes: [],
       rooms: [],
-      friends: []
+      friends: [],
+      experiences: []
     };
     this.userService = new EscapeService();
   }
@@ -41,10 +42,20 @@ class Contents extends Component {
       });
     });
   }
+  getExperiences() {
+    this.userService.myExperiences().then(response => {
+      console.log(response)
+      this.setState({
+        ...this.state,
+        experiences: response
+      });
+    });
+  }
   componentDidMount() {
     this.getEscapes();
     this.getRooms();
     this.getFriends();
+    this.getExperiences();
   }
   render() {
     return (
@@ -58,6 +69,7 @@ class Contents extends Component {
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
               friends={this.state.friends}
+              experiences={this.state.experiences}
             />
           )}
         />
@@ -70,7 +82,7 @@ class Contents extends Component {
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
               friends={this.state.friends}
-              getFriends={this.getFriends()}
+              getFriends={() => this.getFriends()}
             />
           )}
         />

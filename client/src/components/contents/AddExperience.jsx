@@ -23,9 +23,9 @@ class AddExperience extends Component {
     };
     this.service = new EscapeService();
   }
-  componentWillReceiveProps() {
-    this.setState({ ...this.state });
-  }
+  // componentWillReceiveProps() {
+  //   this.setState({ ...this.state });
+  // }
   handleFormSubmit = event => {
     event.preventDefault();
     const escapeDone = this.state.escapeDone;
@@ -67,8 +67,8 @@ class AddExperience extends Component {
           ...this.state,
           friendName: "",
           friendEmail: ""
-        });
-        this.props.getFriends();
+        }, () => this.props.getFriends());
+        
       })
       .catch(error => {
         console.log(error);
@@ -226,8 +226,7 @@ class AddExperience extends Component {
                   <label className="label">Friends</label>
                   <div className="control">
                     <FriendSelector
-                      className="select"
-                      className="basic-multi-select"
+                      className="select basic-multi-select"
                       friends={this.props.friends}
                       isSearchable={true}
                       updateTeam={this.updateTeam}

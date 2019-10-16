@@ -27,12 +27,12 @@ export default class Experience extends Component {
             <CardMedia
               sixteenByNine
               style={{
-                backgroundImage: "url(https://res.cloudinary.com/my-escape-journal/image/upload/v1571151679/EscapeJournal/r4q0rgbe85fvjm1evqij.jpg)"
+                backgroundImage: `url(${this.props.imgPath})`
               }}
             />
             <div style={{ padding: "0 1rem 1rem 1rem" }}>
               <Typography use="headline6" tag="h2" style={{ marginTop: '2rem' }}>
-                Abracadabra
+                {this.props.roomDone}
               </Typography>
               <Typography
               
@@ -40,7 +40,7 @@ export default class Experience extends Component {
                 tag="h3"
                 theme="textSecondaryOnBackground"
               >
-                BrainBreak
+                {this.props.escapeDone}
               </Typography>
               <Typography
                 use="body1"
@@ -48,7 +48,7 @@ export default class Experience extends Component {
                 theme="textSecondaryOnBackground"
                 style={{ marginTop: '1rem' }}
               >
-                21-05-2017 - Ester, Luis, Tanis, Antonio
+                {this.props.date} - {this.props.owner}, Luis, Tanis, Antonio
               </Typography>
             </div>
           <CardActions>

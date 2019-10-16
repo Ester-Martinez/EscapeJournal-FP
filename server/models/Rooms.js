@@ -8,7 +8,7 @@ const RoomSchema = new Schema(  {
     maxGamer: Number,
     minPrice: String,
     maxPrice: String,
-    doneBy: [{ type : String }]
+    // doneBy: [{ type : String }]
 }, {
   timestamps: true
 });

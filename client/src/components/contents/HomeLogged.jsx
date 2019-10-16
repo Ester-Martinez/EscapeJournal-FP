@@ -6,19 +6,29 @@ import "./HomeLogged.css";
 
 
 export default class HomeLogged extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    };
+  }
+  checkInfo() {
+    console.log(this.props.experiences.experiences)
+  }
   render() {
+    this.checkInfo()
     return (
       <div className="cards">
-              {/* {this.state.experiences.map(beer => {
+              {/* {this.props.experiences.map(experience => {
+                
           return (
+           
               <Experience
-              // key={beer._id}
-              // target={beer._id}
-              // src={beer.image_url}
-              // image_alt={beer.image_url}
-              // name={beer.name}
-              // tagline={beer.tagline}
-              // contributed_by={beer.contributed_by}
+              imgPath={experience.imgPath}
+              roomDone={experience}
+              escapeDone={experience.escapeDone}
+              date={experience.date}
+              owner={experience.owner}
               ></Experience>
           );
         })} */}

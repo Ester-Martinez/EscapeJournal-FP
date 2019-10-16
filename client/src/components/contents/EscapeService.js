@@ -47,6 +47,12 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
+  myExperiences = () => {
+    return this.service
+      .get("/myexperiences")
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  };
   handleUpload(theFile) {
     // console.log('file in service: ', theFile)
     return this.service
