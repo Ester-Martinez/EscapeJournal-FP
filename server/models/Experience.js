@@ -5,9 +5,9 @@ const Rooms = require('./../models/Rooms')
 const User = require('./../models/User')
 
 const experienceSchema = new Schema({
-  escapeDone: { type : Schema.Types.ObjectId, ref: 'EscapeRooms' },
-  roomsDone: { type : Schema.Types.ObjectId, ref: 'Rooms' },
-  owner: [{ type : Schema.Types.ObjectId, ref: 'User' }],
+  escapeDone: { type : Schema.Types.ObjectId, ref: 'Escape' },
+  roomDone: { type : Schema.Types.ObjectId, ref: 'Rooms' },
+  owner: { type : Schema.Types.ObjectId, ref: 'User' },
   team: [{ type : Schema.Types.ObjectId, ref: 'Friends' }],
   date: Date,
   imgName: String,
