@@ -70,6 +70,7 @@ class Contents extends Component {
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
               friends={this.state.friends}
+              getFriends={this.getFriends()}
             />
           )}
         />

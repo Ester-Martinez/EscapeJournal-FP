@@ -1,9 +1,21 @@
-.input {
-  width: 500px;
+.new-experience {
+  width: 100%;
 }
 .friend-field {
   margin: 10px;
 }
 .is-centered {
   justify-content: center;
+}
+.add-friend.input {
+  width: 800px;
+}
+.columns {
+  display: flex;
+  margin: 20px;
+  justify-content: space-around;
+}
+.column-one, .column-two {
+  width: 50%;
+  padding: 20px;
 }

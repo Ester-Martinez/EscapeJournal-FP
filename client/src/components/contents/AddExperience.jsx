@@ -4,7 +4,7 @@ import { Button } from "react-bulma-components";
 import EscapeService from "./EscapeService";
 import EscapeSelector from "./EscapeSelector";
 import RoomSelector from "./RoomSelector";
-import FriendSelector from './FriendSelector'
+import FriendSelector from "./FriendSelector";
 import CalendarForm from "./CalendarForm";
 import "./AddExperience.css";
 
@@ -23,7 +23,9 @@ class AddExperience extends Component {
     };
     this.service = new EscapeService();
   }
-
+  componentWillReceiveProps() {
+    this.setState({ ...this.state });
+  }
   handleFormSubmit = event => {
     event.preventDefault();
     const escapeDone = this.state.escapeDone;
@@ -57,7 +59,6 @@ class AddExperience extends Component {
     event.preventDefault();
     const newFriendName = this.state.newFriendName;
     const newFriendEmail = this.state.newFriendEmail;
-    debugger
     this.service
       .addFriend(newFriendName, newFriendEmail)
       .then(response => {
@@ -66,6 +67,7 @@ class AddExperience extends Component {
           newFriendName: "",
           newFriendEmail: ""
         });
+        this.props.getFriends();
       })
       .catch(error => {
         console.log(error);
@@ -86,9 +88,11 @@ class AddExperience extends Component {
     });
   };
   updateTeam = selectedTeam => {
+    let teamMembers = []
+    selectedTeam.forEach(member => teamMembers.push(member.value))
     this.setState({
       ...this.state,
-      team: selectedTeam
+      team: teamMembers
     });
   };
   updateRoomDone = selectedRoomDone => {
@@ -136,134 +140,150 @@ class AddExperience extends Component {
 
   render() {
     return (
-      <div>
-        <h3>If your friends are not on your list, add them here:</h3>
-        <form onSubmit={e => this.handleFormSubmitFriend(e)}>
-          <div className="field is-horizontal">
-            <div className="field friend-field">
-              <div className="control has-icons-left is-expanded">
-                <input
-                  className="input"
-                  type="text"
-                  name="newFriendName"
-                  value={this.state.newFriendName}
-                  onChange={e => this.handleChange(e)}
-                  placeholder="New Friend Name"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-user"></i>
-                </span>
+      <div className="new-experience">
+        <div className="add-friend">
+          <h3>If your friends are not on your list, add them here:</h3>
+          <form onSubmit={e => this.handleFormSubmitFriend(e)}>
+            <div className="field is-horizontal">
+              <div className="field friend-field">
+                <div className="control has-icons-left is-expanded">
+                  <input
+                    className="input"
+                    type="text"
+                    name="newFriendName"
+                    value={this.state.newFriendName}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="New Friend Name"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field friend-field">
+                <div className="control has-icons-left is-expanded">
+                  <input
+                    className="input"
+                    type="email"
+                    name="newFriendEmail"
+                    value={this.state.newFriendEmail}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="your-friend-email-@email.example"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                </div>
               </div>
             </div>
-
-            <div className="field friend-field">
-              <div className="control has-icons-left is-expanded">
+            <div className="field is-centered">
+              <div className="control">
                 <input
-                  className="input"
-                  type="email"
-                  name="newFriendEmail"
-                  value={this.state.newFriendEmail}
-                  onChange={e => this.handleChange(e)}
-                  placeholder="your-friend-email-@email.example"
+                  type="submit"
+                  value="Add Friend"
+                  className="button is-link"
                 />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope"></i>
-                </span>
               </div>
             </div>
-          </div>
-          <div className="field is-centered">
-            <div className="control">
-              <input
-                type="submit"
-                value="Add Friend"
-                className="button is-link"
-              />
-            </div>
-          </div>
-        </form>
-        <br />
-        <h3>Please, add your new experience:</h3>
-        <form onSubmit={e => this.handleFormSubmit(e)}>
-          <div className="field">
-            <label className="label">Escape Name</label>
-            <div className="control has-icons-left has-icons-right">
-              <EscapeSelector
-                className="select"
-                escapes={this.props.escapes}
-                isSearchable={true}
-                updateEscapeDone={this.updateEscapeDone}
-                placeholder="Escape room name"
-              ></EscapeSelector>
-            </div>
-          </div>
+          </form>
+          <br />
+        </div>
+        <div className="add-experience">
+          <h3>Please, add your new experience:</h3>
+          <form onSubmit={e => this.handleFormSubmit(e)}>
+            <div className="columns">
+              <div className="column-one">
+                <div className="field">
+                  <label className="label">Escape Name</label>
+                  <div className="control has-icons-left has-icons-right">
+                    <EscapeSelector
+                      className="select"
+                      escapes={this.props.escapes}
+                      isSearchable={true}
+                      updateEscapeDone={this.updateEscapeDone}
+                      placeholder="Escape room name"
+                    ></EscapeSelector>
+                  </div>
+                </div>
 
-          <div className="field">
-            <label className="label">Room Name</label>
-            <div className="control has-icons-left has-icons-right">
-              <RoomSelector
-                className="select"
-                escape={this.state.escapeDone.value}
-                rooms={this.props.rooms}
-                isSearchable={true}
-                updateRoomDone={this.updateRoomDone}
-                placeholder="Room name"
-              ></RoomSelector>
-            </div>
-          </div>
+                <div className="field">
+                  <label className="label">Room Name</label>
+                  <div className="control has-icons-left has-icons-right">
+                    <RoomSelector
+                      className="select"
+                      escape={this.state.escapeDone.value}
+                      rooms={this.props.rooms}
+                      isSearchable={true}
+                      updateRoomDone={this.updateRoomDone}
+                      placeholder="Room name"
+                    ></RoomSelector>
+                  </div>
+                </div>
 
-          <div className="field">
-            <label className="label">Friends</label>
-            <div className="control">
-              <FriendSelector
-                className="select"
-                friends={this.props.friends}
-                isSearchable={true}
-                updateTeam={this.updateTeam}
-                placeholder="Friend name"
-              ></FriendSelector>
-            </div>
-          </div>
+                <div className="field">
+                  <label className="label">Friends</label>
+                  <div className="control">
+                    <FriendSelector
+                      className="select"
+                      className="basic-multi-select"
+                      friends={this.props.friends}
+                      isSearchable={true}
+                      updateTeam={this.updateTeam}
+                      placeholder="Friend name"
+                    ></FriendSelector>
+                  </div>
+                </div>
+              </div>
 
-          <div className="field">
-            <label className="label">Game Date</label>
-            <div className="control">
-              <CalendarForm updateDate={this.updateDate}></CalendarForm>
-            </div>
-          </div>
+              <div className="column-two">
+                <div className="field">
+                  <label className="label">Game Date</label>
+                  <div className="control">
+                    <CalendarForm updateDate={this.updateDate}></CalendarForm>
+                  </div>
+                </div>
 
-          <div className="file is-medium is-boxed">
-            <label className="file-label">
-              <input
-                className="file-input"
-                type="file"
-                name="imageUrl"
-                onChange={e => this.handleFileUpload(e)}
-              />
-              <span className="file-cta">
-                <span className="file-icon">
-                  <i className="fas fa-upload"></i>
-                </span>
-                <span className="file-label">Choose a file…</span>
-              </span>
-            </label>
-          </div>
-
-          <div className="field is-grouped">
-            <div className="control">
-              <Link to="/public">
-                <Button color="danger" inverted={true}>
-                  <span>Back to home</span>
-                </Button>
-              </Link>
+                <div className="file is-medium is-boxed">
+                  <label className="file-label">
+                    <input
+                      className="file-input"
+                      type="file"
+                      name="imageUrl"
+                      onChange={e => this.handleFileUpload(e)}
+                    />
+                    <span className="file-cta">
+                      <span className="file-icon">
+                        <i className="fas fa-upload"></i>
+                      </span>
+                      <span className="file-label">Choose a file…</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="control">
-              <Button type="submit" color="info" disabled={this.checkToSend()}>
-                Save new experience
-              </Button>
+            <div className="buttons">
+              <div className="field is-grouped">
+                <div className="control">
+                  <Link to="/public">
+                    <Button color="danger" inverted={true}>
+                      <span>Back to home</span>
+                    </Button>
+                  </Link>
+                </div>
+                <div className="control">
+                  <Button
+                    type="submit"
+                    color="info"
+                    disabled={this.checkToSend()}
+                  >
+                    Save new experience
+                  </Button>
+                </div>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
         <h1>
           {this.state.error
             ? "There seems to be an error. Please, try again"

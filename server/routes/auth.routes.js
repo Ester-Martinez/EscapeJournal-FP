@@ -33,8 +33,6 @@ router.get("/currentuser", (req, res, next) => {
   }
 });
 router.get("/checkUser", (req, res, next) => {
-
-  console.log(username)
   User.findOne({ username })
   .then(foundUser => {
     if (foundUser) return true;

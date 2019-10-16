@@ -11,7 +11,6 @@ const uploader = require("./../configs/cloudinary.config");
 
 router.post("/add-experience", (req, res, next) => {
   const { escapeDone, roomsDone, team, date, imgName, imgPath } = req.body;
-  // console.log('entra')
   const newExperience = new Experience({
     escapeDone,
     roomsDone,

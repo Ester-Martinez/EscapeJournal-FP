@@ -17,7 +17,7 @@ class FriendSelector extends React.Component {
   handleChange = selectedOption => {
     this.setState(
       { selectedOption },
-      () => this.props.updateTeam(this.state.selectedOption)
+      () => {this.props.updateTeam(this.state.selectedOption)}
     );
   };
   render() {
@@ -25,6 +25,7 @@ class FriendSelector extends React.Component {
 
     return (
       <Select
+        isMulti
         value={selectedOption}
         onChange={this.handleChange}
         options={options(this.props.friends)}
