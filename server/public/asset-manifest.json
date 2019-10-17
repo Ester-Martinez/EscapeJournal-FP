@@ -1,7 +1,7 @@
 {
-  "main.css": "/static/css/main.da65817c.chunk.css",
-  "main.js": "/static/js/main.5814fea2.chunk.js",
-  "main.js.map": "/static/js/main.5814fea2.chunk.js.map",
+  "main.css": "/static/css/main.b4ba525f.chunk.css",
+  "main.js": "/static/js/main.f285ccc1.chunk.js",
+  "main.js.map": "/static/js/main.f285ccc1.chunk.js.map",
   "static/css/1.b66a5ee2.chunk.css": "/static/css/1.b66a5ee2.chunk.css",
   "static/js/1.9966da15.chunk.js": "/static/js/1.9966da15.chunk.js",
   "static/js/1.9966da15.chunk.js.map": "/static/js/1.9966da15.chunk.js.map",
@@ -9,8 +9,8 @@
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/css/1.b66a5ee2.chunk.css.map": "/static/css/1.b66a5ee2.chunk.css.map",
   "static/media/App.css": "/static/media/journal-LOGO2.e4a44ba2.png",
-  "static/css/main.da65817c.chunk.css.map": "/static/css/main.da65817c.chunk.css.map",
+  "static/css/main.b4ba525f.chunk.css.map": "/static/css/main.b4ba525f.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.6620c14a24b7c9da5d9385e56c773619.js": "/precache-manifest.6620c14a24b7c9da5d9385e56c773619.js",
+  "precache-manifest.f9d44f9a03bf9ed407b9c775a6c6635a.js": "/precache-manifest.f9d44f9a03bf9ed407b9c775a6c6635a.js",
   "service-worker.js": "/service-worker.js"
 }
