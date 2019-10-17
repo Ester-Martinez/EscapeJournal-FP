@@ -1,7 +1,5 @@
 .new-experience {
   width: 100%;
-  background-color: rgba(248, 248, 255, 0.392);
-
 }
 .friend-field {
   margin: 10px;
@@ -9,19 +7,63 @@
 .is-centered {
   justify-content: center;
 }
-.add-friend.input {
-  width: 800px;
+.add-friend .input {
+  width: 500px;
 }
 .columns {
   display: flex;
   margin: 20px;
   justify-content: space-around;
 }
-.add-friend .add-experience {
+.add-friend {
+  margin: 30px auto 20px auto;
   background-color: rgba(248, 248, 255, 0.392);
-
+  width: 80%;
 }
-.column-one, .column-two {
+.column-one,
+.column-two {
   width: 50%;
   padding: 20px;
+}
+.column-two {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding-left: 60px;
+}
+.column-two .label {
+padding: 0;
+}
+.friend-title,
+.experience-title {
+  padding: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.field.is-horizontal {
+  display: flex;
+  justify-content: space-evenly;
+}
+.control {
+  display: flex;
+  justify-content: center;
+}
+.css-2b097c-container {
+  width: 500px;
+}
+.label {
+  font-weight: bold;
+  color: hsl(0, 0%, 0%);
+  text-align: left;
+  padding-left: 80px;
+}
+.calendar {
+  text-indent: 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+.buttons {
+  justify-content: center;
 }

@@ -151,7 +151,7 @@ class AddExperience extends Component {
     return (
       <div className="new-experience">
         <div className="add-friend">
-          <h3>If your friends are not on your list, add them here:</h3>
+          <h3 className="friend-title">If your friends are not on your list, add them here:</h3>
           <form onSubmit={e => this.handleFormSubmitFriend(e)}>
             <div className="field is-horizontal">
               <div className="field friend-field">
@@ -199,7 +199,7 @@ class AddExperience extends Component {
           <br />
         </div>
         <div className="add-experience">
-          <h3>Please, add your new experience:</h3>
+          <h3 className="experience-title">Please, add your new experience:</h3>
           <form onSubmit={e => this.handleFormSubmit(e)}>
             <div className="columns">
               <div className="column-one">
@@ -248,7 +248,7 @@ class AddExperience extends Component {
                 <div className="field">
                   <label className="label">Game Date</label>
                   <div className="control">
-                    <CalendarForm updateDate={this.updateDate}></CalendarForm>
+                    <CalendarForm className="calendar" updateDate={this.updateDate}></CalendarForm>
                   </div>
                 </div>
 
