@@ -42,7 +42,7 @@ class Contents extends Component {
       });
     });
   }
-  getExperiences() {
+  getExperiences = () => {
     this.userService.myExperiences().then(response => {
       // console.log(response)
       this.setState({
@@ -50,7 +50,7 @@ class Contents extends Component {
         experiences: response
       });
     });
-  }
+  };
   componentDidMount() {
     this.getEscapes();
     this.getRooms();
@@ -78,6 +78,7 @@ class Contents extends Component {
           path="/add-experience"
           render={() => (
             <AddExperience
+              getExperiences={this.getExperiences}
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}

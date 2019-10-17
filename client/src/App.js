@@ -29,10 +29,10 @@ class App extends Component {
     });
   };
 
-  fetchUser() {
-    return this.service
-      .loggedin()
-      .then(response => {
+  fetchUser = () => {
+    this.service
+    .loggedin()
+    .then(response => {
         this.setState({
           loggedInUser: response,
         });
@@ -51,8 +51,8 @@ class App extends Component {
           <Redirect to="/home" />
           <div className="App">
             <header className="App-header">
-            <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-              <Contents userInSession={this.state.loggedInUser}/>
+              <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+              <Contents userInSession={this.state.loggedInUser} fetchUser={this.fetchUser}/>
             </header>
           </div>
         </React.Fragment>

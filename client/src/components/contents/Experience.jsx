@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -19,39 +20,33 @@ import "@material/button/dist/mdc.button.css";
 import "@material/icon-button/dist/mdc.icon-button.css";
 import "@material/typography/dist/mdc.typography.css";
 import "@rmwc/icon/icon.css";
-// import "@material/list/mdc-list";
-// import "@material/menu-surface/mdc-menu-surface";
-// import "@material/menu/mdc-menu";
 
 export default class Experience extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
+      fullscreen: false
     };
   }
-  showIcons() {
-    if (this.state.visible){
-      this.setState({
-        ...this.state,
-        visible: false
-      })
-    } else {
-      this.setState({
-        ...this.state,
-        visible:true
-      })
-    }
-  }
-  viewDetails() {
-    // this.service.
-  }
-  // makeImageFullSize
+  // handleSubmit = (user) => {
+  //   saveUser(user)
+  //     .then(() => this.setState(() => ({
+  //       fullscreen: true
+  //     })))
+  // }
+
+
+
   render() {
+    // if (this.state.fullscreen === true) {
+    //   return <Redirect to='/dashboard' />
+    // }
     return (
       <div className="mdc-card card">
         <Card style={{ width: "25rem" }}>
-          <CardPrimaryAction>
+          <Link to="/profile">
+          <CardPrimaryAction >
             <CardMedia
               sixteenByNine
               style={{
@@ -83,27 +78,26 @@ export default class Experience extends Component {
               </Typography>
             </div>
           </CardPrimaryAction>
+          </Link>
           <CardActions>
             <CardActionButtons>
               <CardActionButton>Add</CardActionButton>
               {/* <CardActionButton></CardActionButton> */}
             </CardActionButtons>
             <CardActionIcons>
-            <CardActionIcon icon="share" onClick={(e)=>this.showIcons(e)} />
-<a
-                href={`whatsapp://send?text=El%20otro%20día%20hicimos%20la%20sala%20${this.props.roomDone}%20en%20${this.props.escapeDone}.%20Te%20la%20recomiendo.%20Puedes%20ver%20nuestra%20foto%20aquí:%20https://myescapejournal.herokuapp.com/`}
+              <a
+                className="icons"
+                href={`whatsapp://send?text=El%20otro%20día%20hicimos%20la%20sala%20${this.props.roomDone}%20en%20${this.props.escapeDone}.%20Te%20la%20recomiendo.%20Puedes%20ver%20nuestra%20foto%20aquí:%20https://myescapejournal.herokuapp.com/${this.props.experienceId}`}
                 target="_blank"
-                icon="share"
               >
                 <i className="fab fa-whatsapp"></i>
-              </a> 
+              </a>
 
-              
               <a
-                href={`http://www.facebook.com/sharer.php?u=https://myescapejournal.herokuapp.com/`}
+                className="icons"
+                href={`http://www.facebook.com/sharer.php?u=https://myescapejournal.herokuapp.com/${this.props.experienceId}`}
                 target="_blank"
               >
-                {" "}
                 <i className="fab fa-facebook"></i>
               </a>
 
