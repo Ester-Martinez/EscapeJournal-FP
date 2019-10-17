@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "react-bulma-components";
 import Experience from "./Experience";
 import "./HomeLogged.css";
@@ -22,7 +21,7 @@ export default class HomeLogged extends Component {
         {this.props.experiences.map((userExperience, index) => {
           return (
             <Experience
-              key={index}
+              experienceId={userExperience._id}
               user={this.props.user.name}
               imgPath={userExperience.imgPath}
               roomDone={userExperience.roomDone.name}

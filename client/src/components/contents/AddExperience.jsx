@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Button } from "react-bulma-components";
 import EscapeService from "./EscapeService";
 import EscapeSelector from "./EscapeSelector";
@@ -38,15 +38,21 @@ class AddExperience extends Component {
     this.service
       .addExperience(escapeDone, roomDone, team, date, imgName, imgPath)
       .then(response => {
-        this.setState({
-          escapeDone: "",
-          roomDone: "",
-          team: [],
-          date: "",
-          imgName: "",
-          imgPath: "",
-          success: true
-        });
+        this.setState(
+          {
+            escapeDone: "",
+            roomDone: "",
+            team: [],
+            date: "",
+            imgName: "",
+            imgPath: "",
+            success: true
+          },
+          () => {
+            this.props.getExperiences()
+            this.props.history.push("/home")
+          }
+        );
       })
       .catch(error => {
         console.log(error);
@@ -63,12 +69,14 @@ class AddExperience extends Component {
     this.service
       .addFriend(friendName, friendEmail)
       .then(response => {
-        this.setState({
-          ...this.state,
-          friendName: "",
-          friendEmail: ""
-        }, () => this.props.getFriends());
-        
+        this.setState(
+          {
+            ...this.state,
+            friendName: "",
+            friendEmail: ""
+          },
+          () => this.props.getFriends()
+        );
       })
       .catch(error => {
         console.log(error);
@@ -89,8 +97,8 @@ class AddExperience extends Component {
     });
   };
   updateTeam = selectedTeam => {
-    let teamMembers = []
-    selectedTeam.forEach(member => teamMembers.push(member.value))
+    let teamMembers = [];
+    selectedTeam.forEach(member => teamMembers.push(member.value));
     this.setState({
       ...this.state,
       team: teamMembers
@@ -289,17 +297,10 @@ class AddExperience extends Component {
             ? "There seems to be an error. Please, try again"
             : ""}
         </h1> */}
-         <h1>
-          {this.state.success
-            ? "Your experience has been uploaded correctly"
-            : ""}
-        </h1>
-        {this.state.success
-            ? <Link to='/home'>Back home</Link>
-            : ""}
+        {this.state.success ? <Link to="/home">Back home</Link> : ""}
       </div>
     );
   }
 }
 
-export default AddExperience;
+export default withRouter(AddExperience);
