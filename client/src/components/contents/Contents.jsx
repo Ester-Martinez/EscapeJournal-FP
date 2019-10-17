@@ -52,6 +52,19 @@ class Contents extends Component {
       });
     });
   };
+  // getExperience() {
+  //   let id = this.props.match.params.id;
+  //   this.userService.oneExperience(id).then(response => {
+  //     this.setState({
+  //       ...this.state,
+  //       experience: response,
+  //       escapeDone: response.escapeDone,
+  //       roomDone: response.roomDone,
+  //       owner: response.owner,
+  //       team: response.team
+  //     });
+  //   });
+  // };
   componentDidMount() {
     this.getEscapes();
     this.getRooms();
@@ -88,17 +101,14 @@ class Contents extends Component {
             />
           )}
         />
-        {/* <Route
+        <Route
           path="/:id"
           render={() => (
             <Details
-              escapes={this.state.escapes}
-              rooms={this.state.rooms}
-              // user={this.state.loggedInUser}
-              // friends={this.state.friends}
+            experiences={this.state.experiences}              
             />
           )}
-        /> */}
+        />
         <Route
           exact
           path="/all-friends"

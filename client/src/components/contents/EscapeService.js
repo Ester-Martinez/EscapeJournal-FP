@@ -53,6 +53,12 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
+  oneExperience(id) {
+    return this.service
+      .get(`/experience/${id}`)
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  };
   handleUpload(theFile) {
     // console.log('file in service: ', theFile)
     return this.service

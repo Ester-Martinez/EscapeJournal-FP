@@ -31,6 +31,7 @@ export default class Experience extends Component {
   }
 
   render() {
+
     return (
       <div className="mdc-card card">
         <Card style={{ width: "23rem" }}>
@@ -75,14 +76,14 @@ export default class Experience extends Component {
                 className="icon"
                 solid
                 small
-                message={`I just did an awesome escape called ${this.props.roomDone} at ${this.props.escapeDone}. You should go!`}
-                link={`https://myescapejournal.herokuapp.com/${this.props.experienceId}`}
+                message={`I just did an awesome escape called ${this.props.roomDone} at ${this.props.escapeDone}. You should go! Check out this web, where I post all my game pictures`}
+                link={`${process.env.REACT_APP_API_URL}${this.props.experienceId}`}
               />
               <Telegram
                 className="icon"
                 solidcircle
                 small
-                link={`I just did an awesome escape called ${this.props.roomDone} at ${this.props.escapeDone}. You should go! ${process.env.REACT_APP_API_URL}${this.props.experienceId}`}
+                link={`I just did an awesome escape called ${this.props.roomDone} at ${this.props.escapeDone}. You should go! Check out this web, where I post all my game pictures ${process.env.REACT_APP_API_URL}${this.props.experienceId}`}
               />
             </CardActionIcons>
           </CardActions>
