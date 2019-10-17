@@ -88,7 +88,7 @@ class Contents extends Component {
             />
           )}
         />
-        <Route
+        {/* <Route
           path="/:id"
           render={() => (
             <Details
@@ -98,7 +98,7 @@ class Contents extends Component {
               // friends={this.state.friends}
             />
           )}
-        />
+        /> */}
         <Route
           exact
           path="/all-friends"

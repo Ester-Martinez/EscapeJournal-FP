@@ -33,7 +33,7 @@ export default class Experience extends Component {
   render() {
     return (
       <div className="mdc-card card">
-        <Card style={{ width: "25rem" }}>
+        <Card style={{ width: "23rem" }}>
           <Link to={this.props.experienceId} className="image">
             <CardPrimaryAction>
               <CardMedia
