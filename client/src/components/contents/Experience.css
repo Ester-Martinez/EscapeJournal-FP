@@ -2,19 +2,10 @@
   margin: 10px;
 }
 
-  a:link.icons {
-    color: green;
-    background-color: transparent;
-    text-decoration: none;
-  }
-  
-  a:hover.icons {
-    background-color: gainsboro;
-    text-decoration: underline;
-  }
-  
-  a:active.icons {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
-  }
+.image:hover {
+  opacity: 0.7;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+}

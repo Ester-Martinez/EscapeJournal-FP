@@ -18,16 +18,6 @@ class Navbar extends Component {
   handleLogout = e => {
     this.props.logout();
   };
-  //  correctName() {
-  //   let letters = this.state.loggedInUser.name.split('');
-  //   let firstLetter = letters.shift()
-  //   letters.unshift(firstLetter.toUpperCase());
-  //   let newName = letters.join()
-  //   this.setState(
-  //     {...this.state,
-  //     name: newName}
-  //   )
-  //  }
 
   render() {
     if (this.state.loggedInUser) {
@@ -74,7 +64,7 @@ class Navbar extends Component {
                   Add experience
                 </Link>
                 <Link to="/all-experiences" className="navbar-item">
-                  All my escapes
+                  See what my friends did
                 </Link>
                 <Link to="/profile" className="navbar-item">
                   My profile

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomeLogged from "./HomeLogged";
 import AddExperience from "./AddExperience";
-import AllExperiences from "./AllExperiences";
+import AllFriends from "./AllFriends";
 import Profile from "./Profile";
 import EscapeService from "./EscapeService";
+import Details from "./Details";
 
 class Contents extends Component {
   constructor(props) {
@@ -88,10 +89,21 @@ class Contents extends Component {
           )}
         />
         <Route
-          exact
-          path="/all-experiences"
+          path="/:id"
           render={() => (
-            <AllExperiences
+            <Details
+              escapes={this.state.escapes}
+              rooms={this.state.rooms}
+              // user={this.state.loggedInUser}
+              // friends={this.state.friends}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/all-friends"
+          render={() => (
+            <AllFriends
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}

@@ -8,6 +8,7 @@ import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
 import Contents from "./components/contents/Contents";
 import HomePage from "./components/contents/HomePage";
+import Details from "./components/contents/Details";
 
 class App extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-              <Contents userInSession={this.state.loggedInUser} fetchUser={this.fetchUser}/>
+              <Contents userInSession={this.state.loggedInUser}/>
             </header>
           </div>
         </React.Fragment>
@@ -67,6 +68,16 @@ class App extends Component {
                 <Route exact path="/public" render={() => <HomePage />} />
                 <Route exact path="/signup" render={() => <Signup getUser={this.getUser} />} />
                 <Route exact path="/login" render={() => <Login getUser={this.getUser} />} />
+                <Route
+          path="/:id"
+          render={() => (
+            <Details
+              escapes={this.state.escapes}
+              rooms={this.state.rooms}
+
+            />
+          )}
+        />
               </Switch>
             </header>
           </div>
