@@ -1,19 +1,19 @@
-.nav-style .header {
+.navbar is-fixed-top .nav-style .header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.nav-style .header img {
+.navbar is-fixed-top .nav-style .header img {
 	margin-right: 20px;
 }
-.navbar {
-	background: rgba(255, 251, 248, 0.9);
+.navbar is-fixed-top {
+	background: rgba(255, 239, 227, 0.7);
 	height: 40px;
 }
-.navbar-link, a.navbar-item {
+.navbar is-fixed-top .navbar-link, a.navbar-item {
 	font-size: 1.2rem;
 }
 .navbar-link.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover {
-	background: rgba(255, 251, 248, 0.77);
+	background: rgba(254, 179, 121, 0.5);
 color: black;
 }

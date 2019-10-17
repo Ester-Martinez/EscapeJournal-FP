@@ -1,20 +1,20 @@
-* {
+.homepage {
   color: black;
 }
-h1 {
+.homepage h1 {
   font-weight: bold;
   font-size: 4rem;
   text-align: center;
   text-shadow: floralwhite;
   padding-bottom: 40px;
 }
-h2 {
+.homepage h2 {
   font-size: 2rem;
 }
-.label{
+.homepage .label{
   font-weight: bold;
 }
-.field.is-grouped {
+.homepage .field.is-grouped {
   padding-top: 30px;
   display: flex;
   justify-content: space-evenly;

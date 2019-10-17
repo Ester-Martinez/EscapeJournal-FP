@@ -2,14 +2,14 @@
   margin: 12px;
 }
 
-.image:hover {
+.card .image:hover {
   opacity: 0.7;
 }
-.icon {
+.card .icon {
   width: 30px;
   height: 30px;
 }
-.mdc-button:not(:disabled) {
+.card .mdc-button:not(:disabled) {
   color: hsl(43, 100%, 47%);
   color: var(--mdc-theme-primary, #eeb600);
 }
