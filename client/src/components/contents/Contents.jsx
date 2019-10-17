@@ -45,26 +45,12 @@ class Contents extends Component {
   }
   getExperiences = () => {
     this.userService.myExperiences().then(response => {
-      // console.log(response)
       this.setState({
         ...this.state,
         experiences: response
       });
     });
   };
-  // getExperience() {
-  //   let id = this.props.match.params.id;
-  //   this.userService.oneExperience(id).then(response => {
-  //     this.setState({
-  //       ...this.state,
-  //       experience: response,
-  //       escapeDone: response.escapeDone,
-  //       roomDone: response.roomDone,
-  //       owner: response.owner,
-  //       team: response.team
-  //     });
-  //   });
-  // };
   componentDidMount() {
     this.getEscapes();
     this.getRooms();

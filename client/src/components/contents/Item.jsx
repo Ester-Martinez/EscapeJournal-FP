@@ -10,9 +10,6 @@ export default class Item extends Component {
         <h2>{this.props.escapeDone}</h2>
         <h2>{this.props.date}</h2>
         <h2>{this.props.team}</h2>
-        
-        
-        
       </div>
     )
   }

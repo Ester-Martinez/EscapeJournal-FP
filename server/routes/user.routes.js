@@ -80,20 +80,17 @@ router.get("/myexperiences", (req, res, next) => {
   .populate({ path: "experiences", populate: { path: "escapeDone" } })
   .populate({ path: "experiences", populate: { path: "owner" } })
     .then(userExperiences => {
-      // console.log(userExperiences)
       res.json(userExperiences.experiences);
     });
 });
 router.get("/experience/:id", (req, res, next) => {
   let experience = req.params.id;
-  console.log(experience)
   Experience.findById(experience)
   .populate("roomDone")
   .populate("team")
   .populate("escapeDone")
   .populate("owner")
     .then(thisExperience => {
-      console.log(thisExperience)
       res.json(thisExperience);
     });
 });
