@@ -1,0 +1,13 @@
+.signup {
+  background-color: rgba(248, 248, 255, 0.392);
+  padding: 25px;
+  text-align: left;
+}
+.field.is-grouped {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+h3 {
+  padding-bottom: 20px;
+}

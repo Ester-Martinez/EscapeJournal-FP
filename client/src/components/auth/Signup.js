@@ -1,11 +1,9 @@
-// auth/Signup.js
 import React, { Component } from "react";
 import AuthService from "./AuthService";
 import { Link } from "react-router-dom";
 import { Button } from "react-bulma-components";
+import './Signup.css'
 
-//signup y login son iguales a excepción de el html renderizado y el endpoint de nuestra API rest a la que llamamos
-//uno llama a /signup y el otro a /login usando nuestro AuthService
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +18,6 @@ class Signup extends Component {
     const email = this.state.email;
     const name = this.state.name;
 
-    //aquí llamamos al endpoint /signup de nuestra API Rest usando nuestro AuthService
     this.service
       .signup(username, password, email, name)
       .then(response => {
@@ -30,9 +27,6 @@ class Signup extends Component {
           email: "",
           name: ""
         });
-        //aquí elevamos el nuevo usuario una vez creado a App usando getUser via props
-        //por tanto, informamos a App de que el nuevo usuario ha sido creado, provocando un re-render
-        //y mostrando la parte de contenidos. Mira la función getUser de App para más info (date cuenta de que establece el state de App)
         this.props.getUser(response.user);
       })
       .catch(error => {
@@ -50,15 +44,10 @@ class Signup extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-  // checkUser(username) {
-  //   console.log(username)
-  //   this.service.checkUser(username)
-  //   .then(response => console.log(response.data))
 
-  // }
   render() {
     return (
-      <div>
+      <div class="signup">
         <h3>Welcome to <span>My Escape Journal</span>. Here you can create your account</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">

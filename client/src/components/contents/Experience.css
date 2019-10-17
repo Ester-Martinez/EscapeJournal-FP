@@ -1,6 +1,5 @@
 .card {
-  margin: 10px;
-  
+  margin: 12px;
 }
 
 .image:hover {
@@ -9,4 +8,8 @@
 .icon {
   width: 30px;
   height: 30px;
+}
+.mdc-button:not(:disabled) {
+  color: hsl(43, 100%, 47%);
+  color: var(--mdc-theme-primary, #eeb600);
 }

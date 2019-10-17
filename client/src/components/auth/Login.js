@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bulma-components";
 import AuthService from "./AuthService";
+import './Login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div class="login">
         <h3>Please, login to access your journal</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">

@@ -46,7 +46,7 @@ class AddExperience extends Component {
             date: "",
             imgName: "",
             imgPath: "",
-            success: true
+            formEmpty: true,
           },
           () => {
             this.props.getExperiences()
@@ -88,7 +88,7 @@ class AddExperience extends Component {
   };
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, formEmpty: false });
   };
   updateEscapeDone = selectedEscapeDone => {
     this.setState({
@@ -279,15 +279,23 @@ class AddExperience extends Component {
                     </Button>
                   </Link>
                 </div>
-                <div className="control">
+{this.state.formEmpty ?                 <div className="control">
                   <Button
                     type="submit"
                     color="info"
-                    disabled={this.checkToSend()}
+                    loading={this.checkToSend()}
                   >
                     Save new experience
                   </Button>
-                </div>
+                </div>:                 <div className="control">
+                  <Button
+                    type="submit"
+                    color="info"
+                    loading={false}
+                  >
+                    Save new experience
+                  </Button>
+                </div>}
               </div>
             </div>
           </form>

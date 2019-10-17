@@ -1,5 +1,7 @@
 .new-experience {
   width: 100%;
+  background-color: rgba(248, 248, 255, 0.392);
+
 }
 .friend-field {
   margin: 10px;
@@ -14,6 +16,10 @@
   display: flex;
   margin: 20px;
   justify-content: space-around;
+}
+.add-friend .add-experience {
+  background-color: rgba(248, 248, 255, 0.392);
+
 }
 .column-one, .column-two {
   width: 50%;

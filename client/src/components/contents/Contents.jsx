@@ -6,6 +6,7 @@ import AllFriends from "./AllFriends";
 import Profile from "./Profile";
 import EscapeService from "./EscapeService";
 import Details from "./Details";
+import './Contents.css';
 
 class Contents extends Component {
   constructor(props) {
@@ -88,14 +89,6 @@ class Contents extends Component {
           )}
         />
         <Route
-          path="/:id"
-          render={() => (
-            <Details
-            experiences={this.state.experiences}              
-            />
-          )}
-        />
-        <Route
           exact
           path="/all-friends"
           render={() => (
@@ -104,6 +97,7 @@ class Contents extends Component {
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
               friends={this.state.friends}
+              getExperiences={this.getExperiences}
             />
           )}
         />
@@ -111,6 +105,14 @@ class Contents extends Component {
           exact
           path="/profile"
           render={() => <Profile user={this.state.loggedInUser} />}
+        />
+        <Route
+          path="/:id"
+          render={() => (
+            <Details
+            experiences={this.state.experiences}              
+            />
+          )}
         />
       </Switch>
     );

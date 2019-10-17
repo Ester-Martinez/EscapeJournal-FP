@@ -63,7 +63,7 @@ class Navbar extends Component {
                 <Link to="/add-experience" className="navbar-item">
                   Add experience
                 </Link>
-                <Link to="/all-experiences" className="navbar-item">
+                <Link to="/all-friends" className="navbar-item">
                   My friends
                 </Link>
                 <Link to="/profile" className="navbar-item">
@@ -73,7 +73,7 @@ class Navbar extends Component {
 
               <div className="navbar-end">
                 <div className="navbar-item">
-                  <h2>Hi, {this.state.loggedInUser.name}</h2>
+                  <h3 className="navbar-item">Hi, {this.state.loggedInUser.name}</h3>
                 </div>
 
                 <div className="navbar-item" onClick={this.handleLogout}>

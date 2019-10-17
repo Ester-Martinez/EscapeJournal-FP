@@ -140,6 +140,9 @@ table {
   /* color: white; */
 }
 
-.App-link {
-  color: #09d3ac;
+.App-header {
+  background-image: url("journal-LOGO2.png");
+  justify-content: center;
+  background-size: cover;
+
 }

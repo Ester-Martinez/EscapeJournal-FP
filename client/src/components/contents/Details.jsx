@@ -7,7 +7,7 @@ class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      render:false
+      experience: null
     };
     this.userService = new EscapeService();
   }
@@ -15,19 +15,14 @@ class Details extends Component {
     this.getExperience();
   }
 
-  getExperience() {
+  async getExperience() {
     let id = this.props.match.params.id;
-    this.userService.oneExperience(id).then(response => {
+    const experience = await this.userService.oneExperience(id)
       this.setState({
         ...this.state,
-        experience: response,
-        escapeDone: response.escapeDone,
-        roomDone: response.roomDone,
-        owner: response.owner,
-        team: response.team
+        experience: experience
       });
-    });
-  };
+  }
   getTeamMembers(team) {
     let teamMembers = [];
     team.forEach(element => {
@@ -35,29 +30,19 @@ class Details extends Component {
     });
     return teamMembers.join(", ");
   }
-  checkToSend() {
-    if (
-      !this.state.experience ||
-      !this.state.escapeDone ||
-      !this.state.roomDone ||
-      !this.state.owner ||
-      !this.state.team
-    ) {
-return false
-    } else {
-      return true
-    }
-  }
+
   render() {
-    return (
-      this.checkToSend() ? <Item
-        user={this.state.owner.name}
+    return !!this.state.experience ? (
+      <Item
+        user={this.state.experience.owner.name}
         imgPath={this.state.experience.imgPath}
-        roomDone={this.state.roomDone.name}
-        escapeDone={this.state.escapeDone.name}
+        roomDone={this.state.experience.roomDone.name}
+        escapeDone={this.state.experience.escapeDone.name}
         date={this.state.experience.date}
-        team={this.getTeamMembers(this.state.team)}
-      ></Item> : <p>Loading...</p>
+        team={this.getTeamMembers(this.state.experience.team)}
+      ></Item>
+    ) : (
+      <p>Loading...</p>
     );
   }
 }
