@@ -8,17 +8,20 @@ const Friend = require("../models/Friends");
 // const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
 const uploader = require("./../configs/cloudinary.config");
+const moment = require('moment');
 
 router.post("/add-experience", (req, res, next) => {
   const { escapeDone, roomDone, team, date, imgName, imgPath } = req.body;
   const owner = req.user._id;
+  formatedDate = moment(date).format('L')
+
   const newExperience = new Experience({
     escapeDone,
     roomDone,
     imgName,
     imgPath,
     team,
-    date,
+    date: formatedDate,
     owner
   });
   newExperience
@@ -28,10 +31,10 @@ router.post("/add-experience", (req, res, next) => {
         { _id: req.user.id },
         { $push: { experiences: savedExp._id } },
         { new: true }
-      )
+      ).then(savedInUser => res.json(savedExp))
+      .catch(error => next(error))
     )
-    .then(savedInUser => res.json(savedExp))
-    .catch(error => next(error));
+    
 });
 
 router.post("/add-friend", (req, res, next) => {

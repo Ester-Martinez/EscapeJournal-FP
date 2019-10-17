@@ -9,18 +9,26 @@ export default class HomeLogged extends Component {
     super(props);
     this.state = {};
   }
+  getTeamMembers(team) {
+    let teamMembers = [];
+    team.forEach(element => {
+      teamMembers.push(element.friendName)
+    });
+    return teamMembers.join(', ')
+  }
   render() {
-    // console.log(this.userExperience)
     return (
       <div className="cards">
-        {this.props.experiences.map(userExperience => {
+        {this.props.experiences.map((userExperience, index) => {
           return (
             <Experience
+              key={index}
               user={this.props.user.name}
               imgPath={userExperience.imgPath}
               roomDone={userExperience.roomDone.name}
               escapeDone={userExperience.escapeDone.name}
-              date={userExperience.date.substring(0,10)}
+              date={userExperience.date}
+              team={this.getTeamMembers(userExperience.team)}
             ></Experience>
           );
         })}
