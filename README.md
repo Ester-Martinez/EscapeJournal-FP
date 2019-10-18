@@ -1,2 +1,0 @@
-# EscapeJournal-FP
-# EscapeJournal-FP
