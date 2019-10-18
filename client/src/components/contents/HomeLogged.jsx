@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "react-bulma-components";
 import Experience from "./Experience";
 import "./HomeLogged.css";
 

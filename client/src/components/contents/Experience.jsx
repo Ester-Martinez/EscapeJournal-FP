@@ -6,11 +6,7 @@ import {
   CardPrimaryAction,
   CardMedia,
   CardActions,
-  CardActionButtons,
-  CardActionButton,
   CardActionIcons,
-  CardActionIcon,
-  CardAction
 } from "@rmwc/card";
 import { Typography } from "@rmwc/typography";
 import { Whatsapp, Telegram } from "react-social-sharing";

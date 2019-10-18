@@ -8,7 +8,6 @@ import Login from "./components/auth/Login";
 import AuthService from "./components/auth/AuthService";
 import Contents from "./components/contents/Contents";
 import HomePage from "./components/contents/HomePage";
-import Details from "./components/contents/Details";
 
 class App extends Component {
   constructor(props) {

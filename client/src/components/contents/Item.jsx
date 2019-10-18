@@ -5,7 +5,7 @@ export default class Item extends Component {
   render() {
     return (
       <div className="item">
-        <img src={this.props.imgPath}></img>
+        <img src={this.props.imgPath} alt={this.props.roomDone}></img>
         <h1>{this.props.roomDone}</h1>
         <h2>{this.props.escapeDone}</h2>
         <h2>{this.props.date}</h2>

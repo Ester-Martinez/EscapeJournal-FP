@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import AddExperience from "./AddExperience";
-import AllFriends from "./AllFriends";
 import "./Contents.css";
 import Details from "./Details";
 import EscapeService from "./EscapeService";
@@ -96,20 +95,6 @@ class Contents extends Component {
               user={this.state.loggedInUser}
               friends={this.state.myfriends}
               getFriends={() => this.getFriends()}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/all-friends"
-          render={() => (
-            <AllFriends
-              escapes={this.state.escapes}
-              rooms={this.state.rooms}
-              user={this.state.loggedInUser}
-              friends={this.state.myfriends}
-              allUsers={this.state.allUsers}
-              getExperiences={this.getExperiences}
             />
           )}
         />
