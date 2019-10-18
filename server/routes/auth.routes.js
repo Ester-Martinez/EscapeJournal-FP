@@ -67,7 +67,6 @@ router.post("/signup", (req, res, next) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  // req.session.destroy();
   res.status(200).json({ message: "logged out" });
 });
 

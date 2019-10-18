@@ -23,9 +23,6 @@ class AddExperience extends Component {
     };
     this.service = new EscapeService();
   }
-  // componentWillReceiveProps() {
-  //   this.setState({ ...this.state });
-  // }
   handleFormSubmit = event => {
     event.preventDefault();
     const escapeDone = this.state.escapeDone;
@@ -297,11 +294,6 @@ class AddExperience extends Component {
             </div>
           </form>
         </div>
-        {/* <h1>
-          {this.state.error
-            ? "There seems to be an error. Please, try again"
-            : ""}
-        </h1> */}
         {this.state.success ? <Link to="/home">Back home</Link> : ""}
       </div>
     );

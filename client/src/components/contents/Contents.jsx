@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import AddExperience from "./AddExperience";
-import AllFriends from "./AllFriends";
 import "./Contents.css";
 import Details from "./Details";
 import EscapeService from "./EscapeService";
 import HomeLogged from "./HomeLogged";
 import Profile from "./Profile";
-import RoomDetails from "./RoomDetails";
 
 
 class Contents extends Component {
@@ -102,29 +100,8 @@ class Contents extends Component {
         />
         <Route
           exact
-          path="/all-friends"
-          render={() => (
-            <AllFriends
-              escapes={this.state.escapes}
-              rooms={this.state.rooms}
-              user={this.state.loggedInUser}
-              friends={this.state.myfriends}
-              allUsers={this.state.allUsers}
-              getExperiences={this.getExperiences}
-            />
-          )}
-        />
-        <Route
-          exact
           path="/profile"
           render={() => <Profile user={this.state.loggedInUser} />}
-        />
-        <Route
-          path="/room/:id"
-          render={() => (
-            <RoomDetails rooms={this.state.rooms} escapes={this.state.escapes} params={this.params} />
-
-          )}
         />
         <Route
           path="/:id"

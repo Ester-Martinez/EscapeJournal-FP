@@ -1,4 +1,3 @@
-// auth/Signup.js
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bulma-components";
@@ -44,7 +43,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="login">
+      <div className="login">
         <h3>Please, login to access your journal</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">

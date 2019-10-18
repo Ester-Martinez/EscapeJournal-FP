@@ -9,7 +9,6 @@ export default class HomePage extends Component {
     return (
       <div className="homepage">
         <h1>Keep all your escape room activity in one place</h1>
-        {/* <img src={logo} alt="logo"></img> */}
         <h2>Please, log in or sign up to create or access your journal</h2>
         <div className="field is-grouped">
         <Link to="/signup">
