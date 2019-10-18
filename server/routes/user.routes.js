@@ -4,8 +4,6 @@ const User = require("../models/User");
 const EscapeRooms = require("../models/EscapeRooms");
 const Rooms = require("../models/Rooms");
 const Friend = require("../models/Friends");
-// const upload = require("./../configs/cloudinary.config");
-// const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
 const uploader = require("./../configs/cloudinary.config");
 const moment = require("moment");
@@ -43,7 +41,6 @@ router.post("/add-friend", (req, res, next) => {
   });
   newFriend
     .save()
-    // .then(savedFriend => res.json(savedFriend))
     .then(savedFriend =>
       User.findByIdAndUpdate(
         { _id: req.user.id },
@@ -109,8 +106,6 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
     next(new Error("No file uploaded!"));
     return;
   }
-  // get secure_url from the file object and save it in the
-  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
   res.json({ secure_url: req.file.secure_url });
 });
 

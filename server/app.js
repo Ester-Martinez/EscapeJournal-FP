@@ -32,7 +32,6 @@ const debug = require("debug")(
 
 const app = express();
 
-// Middleware Setup
 var whitelist = [
   "http://localhost:3000",
   "http://localhost:3010",
@@ -51,8 +50,6 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// Express View engine setup
 
 app.use(
   require("node-sass-middleware")({
@@ -77,10 +74,8 @@ hbs.registerHelper("ifUndefined", (value, options) => {
   }
 });
 
-// default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-// Enable authentication using session + passport
 app.use(
   session({
     secret: "irongenerator",

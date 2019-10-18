@@ -23,11 +23,6 @@ class Navbar extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-  
-
-
-
-        {/*++]*********************************************** Aquí acaba la nueva */}
           <nav
             className="navbar is-fixed-top"
             role="navigation"
@@ -42,20 +37,6 @@ class Navbar extends Component {
                   alt="home-icon"
                 />
               </Link>
-
-              {/* 
-            This makes the mobile menu appear. TODO in responsive design.
-            <a
-              role="button"
-              className="navbar-burger burger"
-              aria-label="menu"
-              aria-expanded="false"
-              data-target="navbarBasicExample"
-            >
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a> */}
             </div>
 
             <div id="JournalNavbar" className="navbar-menu">
@@ -63,9 +44,6 @@ class Navbar extends Component {
                 <Link to="/add-experience" className="navbar-item">
                   Add experience
                 </Link>
-                {/* <Link to="/all-friends" className="navbar-item">
-                  My friends
-                </Link> */}
                 <Link to="/profile" className="navbar-item">
                   My profile
                 </Link>
@@ -84,19 +62,6 @@ class Navbar extends Component {
               </div>
             </div>
           </nav>
-
-          {/*      <li>
-              <a onClick={this.handleLogout}>Logout</a>
-             </li>
-             <li>
-               <Link to="/signup">Search</Link>
-             </li>
-           </ul> */}
-
-          {/* <div className="header">
-             <h2>Welcome {this.state.loggedInUser.username} - Ironhacker</h2>
-           </div>
-         </nav> */}
         </React.Fragment>
       );
     } else {

@@ -13,14 +13,12 @@ import {
   CardAction
 } from "@rmwc/card";
 import { Typography } from "@rmwc/typography";
-// import { Icon, icon } from "@rmwc/icon";
 import { Whatsapp, Telegram } from "react-social-sharing";
 import "./Experience.css";
 import "@material/card/dist/mdc.card.css";
 import "@material/button/dist/mdc.button.css";
 import "@material/icon-button/dist/mdc.icon-button.css";
 import "@material/typography/dist/mdc.typography.css";
-// import "@rmwc/icon/icon.css";
 
  class Experience extends Component {
   constructor(props) {
@@ -31,8 +29,6 @@ import "@material/typography/dist/mdc.typography.css";
   }
 
   render() {
-    let escapeDetails = this.props.escapeDetails;
-    let roomDetails = this.props.roomDetails;
     return (
       <div className="mdc-card card">
         <Card style={{ width: "20rem" }}>
@@ -51,7 +47,6 @@ import "@material/typography/dist/mdc.typography.css";
           </Link>
           <div style={{ padding: "0 1rem 1rem 1rem" }}>
             
-            {/* <Link to={`/room/${this.props.roomId}`} params={{ escapeDetails: escapeDetails, roomDetails: roomDetails }}> */}
               <Typography
                 use="headline6"
                 tag="h2"
@@ -59,7 +54,6 @@ import "@material/typography/dist/mdc.typography.css";
               >
                 {this.props.roomDone}
               </Typography>
-            {/* </Link> */}
             <Typography
               use="subtitle2"
               tag="h3"
@@ -78,10 +72,6 @@ import "@material/typography/dist/mdc.typography.css";
           </div>
 
           <CardActions>
-            <CardActionButtons>
-              <CardActionButton>Add</CardActionButton>
-              {/* <CardActionButton></CardActionButton> */}
-            </CardActionButtons>
             <CardActionIcons>
               <Whatsapp
                 className="icon"

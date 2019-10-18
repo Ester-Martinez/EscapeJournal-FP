@@ -95,8 +95,6 @@ class Signup extends Component {
                 <i className="fas fa-exclamation-triangle"></i>
               </span>}
             </div>
-            {/* {this.checkUser(this.state.username) && <p className="help is-success">This username is available</p>}
-            {!this.state.username && <p className="help is-danger">This username is invalid</p>} */}
           </div>
 
           <div className="field">
@@ -120,8 +118,6 @@ class Signup extends Component {
                 <i className="fas fa-exclamation-triangle"></i>
               </span>}
             </div>
-            {/* <p className="help is-success">This email is correct</p>
-            <p className="help is-danger">This email is invalid</p> */}
           </div>
 
           <div className="field">
@@ -165,7 +161,7 @@ class Signup extends Component {
             </div>
           </div>
         </form>
-        <h1>{this.state.error ? 'There seems to be an error. Please, try again' : ''}</h1>
+        <h1>{this.state.error ? 'This user already exists' : ''}</h1>
       </div>
     );
   }

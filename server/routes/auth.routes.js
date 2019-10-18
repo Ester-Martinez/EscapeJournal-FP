@@ -21,7 +21,7 @@ router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
     if (err) next(new Error("Something went wrong"));
     if (!theUser) next(failureDetails);
-    login(req, theUser).then(user => res.status(200).json(req.user));
+    login(req, theUser).then(user => res.status(200, {'Cache-Control': 'no-cache'}).json(req.user));
   })(req, res, next);
 });
 
@@ -33,41 +33,47 @@ router.get("/currentuser", (req, res, next) => {
   }
 });
 router.get("/checkUser", (req, res, next) => {
-  User.findOne({ username })
-  .then(foundUser => {
+  User.findOne({ username }).then(foundUser => {
     if (foundUser) return true;
-})
-})
+  });
+});
 
 router.post("/signup", (req, res, next) => {
   const { username, password, email, name } = req.body;
   if (!username || !password) {
     next(new Error("You must provide both username and password"));
   }
-  User.findOne({ username })
-    .then(foundUser => {
-      if (foundUser) throw new Error("Username already exists");
-      
-      const validationCode = crypto.randomBytes(20).toString("hex");
-      const salt = bcrypt.genSaltSync(10);
-      const hashPass = bcrypt.hashSync(password, salt);
-      return new User({
-        username,
-        password: hashPass,
-        email,
-        name,
-        validationCode,
-        guest: false,
-      }).save();
+  User.findOne({ email })
+    .then(userExists => {
+      if (userExists) {
+        next(new Error("User already exists"));
+      }
     })
-    .then(savedUser => login(req, savedUser))
-    .then(user => res.json({ status: "signup & login successful", user }))
-    .catch(e => next(e));
+    .catch(notFound => {
+      User.findOne({ username })
+        .then(foundUser => {
+          if (foundUser) throw new Error("User already exists");
+
+          const validationCode = crypto.randomBytes(20).toString("hex");
+          const salt = bcrypt.genSaltSync(10);
+          const hashPass = bcrypt.hashSync(password, salt);
+          return new User({
+            username,
+            password: hashPass,
+            email,
+            name,
+            validationCode,
+            guest: false
+          }).save();
+        })
+        .then(savedUser => login(req, savedUser))
+        .then(user => res.json({ status: "signup & login successful", user }))
+        .catch(e => next(e));
+    });
 });
 
 router.get("/logout", (req, res) => {
   req.logout();
-  // req.session.destroy();
   res.status(200).json({ message: "logged out" });
 });
 

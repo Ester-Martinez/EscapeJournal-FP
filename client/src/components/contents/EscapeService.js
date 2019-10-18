@@ -66,7 +66,6 @@ class EscapeService {
       .catch(err => console.log(err));
   };
   handleUpload(theFile) {
-    // console.log('file in service: ', theFile)
     return this.service
       .post("/upload", theFile)
       .then(res => res.data)

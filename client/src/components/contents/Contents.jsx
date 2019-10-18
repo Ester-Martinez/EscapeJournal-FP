@@ -7,7 +7,6 @@ import Details from "./Details";
 import EscapeService from "./EscapeService";
 import HomeLogged from "./HomeLogged";
 import Profile from "./Profile";
-import RoomDetails from "./RoomDetails";
 
 
 class Contents extends Component {
@@ -118,13 +117,6 @@ class Contents extends Component {
           exact
           path="/profile"
           render={() => <Profile user={this.state.loggedInUser} />}
-        />
-        <Route
-          path="/room/:id"
-          render={() => (
-            <RoomDetails rooms={this.state.rooms} escapes={this.state.escapes} params={this.params} />
-
-          )}
         />
         <Route
           path="/:id"
