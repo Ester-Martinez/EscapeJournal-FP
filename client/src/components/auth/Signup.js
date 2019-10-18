@@ -47,7 +47,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div class="signup">
+      <div className="signup">
         <h3>Welcome to <span>My Escape Journal</span>. Here you can create your account</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">

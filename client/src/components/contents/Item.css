@@ -1,3 +1,12 @@
+.item {
+  color: black;
+  }
 .item img{
 height: 60vh;
 }
+.item h1{
+  font-weight: bold;
+  }
+  .item .team{
+    font-style: italic;
+    }

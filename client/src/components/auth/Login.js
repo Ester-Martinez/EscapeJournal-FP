@@ -43,7 +43,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="login">
+      <div className="login">
         <h3>Please, login to access your journal</h3>
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">

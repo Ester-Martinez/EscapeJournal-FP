@@ -9,7 +9,7 @@ export default class Item extends Component {
         <h1>{this.props.roomDone}</h1>
         <h2>{this.props.escapeDone}</h2>
         <h2>{this.props.date}</h2>
-        <h2>{this.props.user}, {this.props.team}</h2>
+        <h2 className="team">{this.props.user}, {this.props.team}</h2>
       </div>
     )
   }
