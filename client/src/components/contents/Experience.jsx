@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import {
   Card,
@@ -22,7 +22,7 @@ import "@material/icon-button/dist/mdc.icon-button.css";
 import "@material/typography/dist/mdc.typography.css";
 // import "@rmwc/icon/icon.css";
 
-export default class Experience extends Component {
+ class Experience extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,11 +31,15 @@ export default class Experience extends Component {
   }
 
   render() {
-
+    let escapeDetails = this.props.escapeDetails;
+    let roomDetails = this.props.roomDetails;
     return (
       <div className="mdc-card card">
-        <Card style={{ width: "23rem" }}>
-          <Link to={this.props.experienceId} className="image">
+        <Card style={{ width: "20rem" }}>
+          <Link
+            to={this.props.experienceId}
+            className="image"
+          >
             <CardPrimaryAction>
               <CardMedia
                 sixteenByNine
@@ -46,9 +50,16 @@ export default class Experience extends Component {
             </CardPrimaryAction>
           </Link>
           <div style={{ padding: "0 1rem 1rem 1rem" }}>
-            <Typography use="headline6" tag="h2" style={{ marginTop: "2rem" }}>
-              {this.props.roomDone}
-            </Typography>
+            
+            {/* <Link to={`/room/${this.props.roomId}`} params={{ escapeDetails: escapeDetails, roomDetails: roomDetails }}> */}
+              <Typography
+                use="headline6"
+                tag="h2"
+                style={{ marginTop: "2rem" }}
+              >
+                {this.props.roomDone}
+              </Typography>
+            {/* </Link> */}
             <Typography
               use="subtitle2"
               tag="h3"
@@ -92,3 +103,4 @@ export default class Experience extends Component {
     );
   }
 }
+export default withRouter(Experience)

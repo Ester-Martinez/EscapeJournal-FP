@@ -8,12 +8,12 @@ const Friend = require("../models/Friends");
 // const access = require("./../middlewares/access.mid");
 const Experience = require("./../models/Experience");
 const uploader = require("./../configs/cloudinary.config");
-const moment = require('moment');
+const moment = require("moment");
 
 router.post("/add-experience", (req, res, next) => {
   const { escapeDone, roomDone, team, date, imgName, imgPath } = req.body;
   const owner = req.user._id;
-  formatedDate = moment(date).format('L')
+  formatedDate = moment(date).format("L");
 
   const newExperience = new Experience({
     escapeDone,
@@ -24,17 +24,15 @@ router.post("/add-experience", (req, res, next) => {
     date: formatedDate,
     owner
   });
-  newExperience
-    .save()
-    .then(savedExp =>
-      User.findByIdAndUpdate(
-        { _id: req.user.id },
-        { $push: { experiences: savedExp._id } },
-        { new: true }
-      ).then(savedInUser => res.json(savedExp))
-      .catch(error => next(error))
+  newExperience.save().then(savedExp =>
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { experiences: savedExp._id } },
+      { new: true }
     )
-    
+      .then(savedInUser => res.json(savedExp))
+      .catch(error => next(error))
+  );
 });
 
 router.post("/add-friend", (req, res, next) => {
@@ -72,13 +70,18 @@ router.get("/myfriends", (req, res, next) => {
       res.json(userFriends.friends);
     });
 });
+router.get("/allUsers", (req, res, next) => {
+  User.find().then(usersFound => {
+    res.json(usersFound);
+  });
+});
 router.get("/myexperiences", (req, res, next) => {
   let currentUser = req.user._id;
   User.findById(currentUser)
-  .populate({ path: "experiences", populate: { path: "roomDone" } })
-  .populate({ path: "experiences", populate: { path: "team" } })
-  .populate({ path: "experiences", populate: { path: "escapeDone" } })
-  .populate({ path: "experiences", populate: { path: "owner" } })
+    .populate({ path: "experiences", populate: { path: "roomDone" } })
+    .populate({ path: "experiences", populate: { path: "team" } })
+    .populate({ path: "experiences", populate: { path: "escapeDone" } })
+    .populate({ path: "experiences", populate: { path: "owner" } })
     .then(userExperiences => {
       res.json(userExperiences.experiences);
     });
@@ -86,10 +89,10 @@ router.get("/myexperiences", (req, res, next) => {
 router.get("/experience/:id", (req, res, next) => {
   let experience = req.params.id;
   Experience.findById(experience)
-  .populate("roomDone")
-  .populate("team")
-  .populate("escapeDone")
-  .populate("owner")
+    .populate("roomDone")
+    .populate("team")
+    .populate("escapeDone")
+    .populate("owner")
     .then(thisExperience => {
       res.json(thisExperience);
     });

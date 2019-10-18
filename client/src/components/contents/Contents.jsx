@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import HomeLogged from "./HomeLogged";
+import { Route, Switch, withRouter } from "react-router-dom";
 import AddExperience from "./AddExperience";
 import AllFriends from "./AllFriends";
-import Profile from "./Profile";
-import EscapeService from "./EscapeService";
+import "./Contents.css";
 import Details from "./Details";
-import './Contents.css';
+import EscapeService from "./EscapeService";
+import HomeLogged from "./HomeLogged";
+import Profile from "./Profile";
+import RoomDetails from "./RoomDetails";
+
 
 class Contents extends Component {
   constructor(props) {
@@ -15,8 +17,9 @@ class Contents extends Component {
       loggedInUser: this.props.userInSession,
       escapes: [],
       rooms: [],
-      friends: [],
-      experiences: []
+      myfriends: [],
+      experiences: [],
+      allUsers: []
     };
     this.userService = new EscapeService();
   }
@@ -40,7 +43,7 @@ class Contents extends Component {
     this.userService.myFriends().then(response => {
       this.setState({
         ...this.state,
-        friends: response
+        myfriends: response
       });
     });
   }
@@ -52,11 +55,20 @@ class Contents extends Component {
       });
     });
   };
+  getAllUsers = () => {
+    this.userService.allUsers().then(response => {
+      this.setState({
+        ...this.state,
+        allUsers: response
+      });
+    });
+  };
   componentDidMount() {
     this.getEscapes();
     this.getRooms();
     this.getFriends();
     this.getExperiences();
+    this.getAllUsers();
   }
   render() {
     return (
@@ -69,7 +81,7 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
-              friends={this.state.friends}
+              friends={this.state.myfriends}
               experiences={this.state.experiences}
             />
           )}
@@ -83,7 +95,7 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
-              friends={this.state.friends}
+              friends={this.state.myfriends}
               getFriends={() => this.getFriends()}
             />
           )}
@@ -96,7 +108,8 @@ class Contents extends Component {
               escapes={this.state.escapes}
               rooms={this.state.rooms}
               user={this.state.loggedInUser}
-              friends={this.state.friends}
+              friends={this.state.myfriends}
+              allUsers={this.state.allUsers}
               getExperiences={this.getExperiences}
             />
           )}
@@ -107,16 +120,19 @@ class Contents extends Component {
           render={() => <Profile user={this.state.loggedInUser} />}
         />
         <Route
-          path="/:id"
+          path="/room/:id"
           render={() => (
-            <Details
-            experiences={this.state.experiences}              
-            />
+            <RoomDetails rooms={this.state.rooms} escapes={this.state.escapes} params={this.params} />
+
           )}
+        />
+        <Route
+          path="/:id"
+          render={() => <Details experiences={this.state.experiences} />}
         />
       </Switch>
     );
   }
 }
 
-export default Contents;
+export default withRouter(Contents);

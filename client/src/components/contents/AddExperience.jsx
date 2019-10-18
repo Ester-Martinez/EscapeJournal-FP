@@ -46,11 +46,11 @@ class AddExperience extends Component {
             date: "",
             imgName: "",
             imgPath: "",
-            formEmpty: true,
+            formEmpty: true
           },
           () => {
-            this.props.getExperiences()
-            this.props.history.push("/home")
+            this.props.getExperiences();
+            this.props.history.push("/home");
           }
         );
       })
@@ -151,7 +151,9 @@ class AddExperience extends Component {
     return (
       <div className="new-experience">
         <div className="add-friend">
-          <h3 className="friend-title">If your friends are not on your list, add them here:</h3>
+          <h3 className="friend-title">
+            If your friends are not in your list, add them here:
+          </h3>
           <form onSubmit={e => this.handleFormSubmitFriend(e)}>
             <div className="field is-horizontal">
               <div className="field friend-field">
@@ -248,7 +250,10 @@ class AddExperience extends Component {
                 <div className="field">
                   <label className="label">Game Date</label>
                   <div className="control">
-                    <CalendarForm className="calendar" updateDate={this.updateDate}></CalendarForm>
+                    <CalendarForm
+                      className="calendar"
+                      updateDate={this.updateDate}
+                    ></CalendarForm>
                   </div>
                 </div>
 
@@ -279,23 +284,15 @@ class AddExperience extends Component {
                     </Button>
                   </Link>
                 </div>
-{this.state.formEmpty ?                 <div className="control">
+                <div className="control">
                   <Button
                     type="submit"
                     color="info"
-                    loading={this.checkToSend()}
+                    disabled={this.checkToSend()}
                   >
                     Save new experience
                   </Button>
-                </div>:                 <div className="control">
-                  <Button
-                    type="submit"
-                    color="info"
-                    loading={false}
-                  >
-                    Save new experience
-                  </Button>
-                </div>}
+                </div>
               </div>
             </div>
           </form>

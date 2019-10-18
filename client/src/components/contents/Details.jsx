@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import EscapeService from "./EscapeService";
 import { withRouter } from "react-router-dom";
 import Item from "./Item";
+import "./Details.css";
+
 
 class Details extends Component {
   constructor(props) {

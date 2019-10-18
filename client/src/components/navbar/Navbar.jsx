@@ -63,9 +63,9 @@ class Navbar extends Component {
                 <Link to="/add-experience" className="navbar-item">
                   Add experience
                 </Link>
-                <Link to="/all-friends" className="navbar-item">
+                {/* <Link to="/all-friends" className="navbar-item">
                   My friends
-                </Link>
+                </Link> */}
                 <Link to="/profile" className="navbar-item">
                   My profile
                 </Link>

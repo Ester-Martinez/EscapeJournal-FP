@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
+import './Item.css'
 
 export default class Item extends Component {
   render() {
     return (
-      <div>
-        <h1>{this.props.user}</h1>
+      <div className="item">
         <img src={this.props.imgPath}></img>
-        <h2>{this.props.roomDone}</h2>
+        <h1>{this.props.roomDone}</h1>
         <h2>{this.props.escapeDone}</h2>
         <h2>{this.props.date}</h2>
-        <h2>{this.props.team}</h2>
+        <h2>{this.props.user}, {this.props.team}</h2>
       </div>
     )
   }

@@ -47,6 +47,12 @@ class EscapeService {
       .then(response => response.data)
       .catch(err => console.log(err));
   };
+  allUsers = (userFriends) => {
+    return this.service
+      .get("/allusers")
+      .then(response => response.data)
+      .catch(err => console.log(err));
+  };
   myExperiences = () => {
     return this.service
       .get("/myexperiences")
